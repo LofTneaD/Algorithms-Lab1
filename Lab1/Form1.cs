@@ -46,34 +46,7 @@ namespace Lab1
         {
 
         }
-        /*private void Chart_MouseMove(object sender, MouseEventArgs e)
-        {
-            {                
-                if (this.chart1 != null)
-                {
-                    var pos = e.Location;
-                    var results = this.chart1.HitTest(pos.X, pos.Y, false, ChartElementType.DataPoint);
-
-                    // Если курсор наведён на точку данных
-                    foreach (var result in results)
-                    {
-                        if (result.ChartElementType == ChartElementType.DataPoint)
-                        {
-                            var point = result.Series.Points[result.PointIndex];
-                            this.chart1.Cursor = Cursors.Hand;
-
-                            // Отображение координат точки
-                            toolTip1.Show($"X: {point.XValue}, Y: {point.YValues[0]}", this.chart1, pos.X, pos.Y - 15);
-                            return;
-                        }
-                    }
-
-                    // Если не наведено на точку, скрываем подсказку
-                    toolTip1.Hide(this.chart1);
-                    this.chart1.Cursor = Cursors.Default;
-                }
-            }
-        }*/
+        
         private ToolTip toolTip1 = new ToolTip();
 
         private void отчиститьГрафикToolStripMenuItem_Click(object sender, EventArgs e)
@@ -99,7 +72,6 @@ namespace Lab1
 
             for (int i = 0; i < time.Length; i++)
             {
-                //this.chart1.Series[0].Points.AddXY(time[i], i+1);
                 this.chart1.Series[0].Points.AddXY(i+1 ,time[i]);
                 this.chart1.Series[1].Points.AddXY(i + 1, 0.00005d);
             }
@@ -115,7 +87,6 @@ namespace Lab1
 
             for (int i = 0; i < time.Length; i++)
             {
-                //this.chart1.Series[0].Points.AddXY(time[i], i+1);
                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                 this.chart1.Series[1].Points.AddXY(i + 1, 0.00005d);
             }
@@ -128,7 +99,6 @@ namespace Lab1
 
             for (int i = 0; i < time.Length; i++)
             {
-                //this.chart1.Series[0].Points.AddXY(time[i], i+1);
                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                 this.chart1.Series[1].Points.AddXY(i + 1, 0.00005d);
             }
@@ -141,7 +111,6 @@ namespace Lab1
 
             for (int i = 0; i < time.Length; i++)
             {
-                //this.chart1.Series[0].Points.AddXY(time[i], i+1);
                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                 this.chart1.Series[1].Points.AddXY(i + 1, 0.00005d);
             }
@@ -154,7 +123,6 @@ namespace Lab1
 
             for (int i = 0; i < time.Length; i++)
             {
-                //this.chart1.Series[0].Points.AddXY(time[i], i+1);
                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                 this.chart1.Series[1].Points.AddXY(i + 1, 0.00005d);
             }            
@@ -167,7 +135,6 @@ namespace Lab1
 
             for (int i = 0; i < time.Length; i++)
             {
-                //this.chart1.Series[0].Points.AddXY(time[i], i+1);
                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                 this.chart1.Series[1].Points.AddXY(i + 1, 0.00005d);
             }
@@ -180,7 +147,6 @@ namespace Lab1
 
             for (int i = 0; i < time.Length; i++)
             {
-                //this.chart1.Series[0].Points.AddXY(time[i], i+1);
                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                 this.chart1.Series[1].Points.AddXY(i + 1, 0.00005d);
             }
