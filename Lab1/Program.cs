@@ -48,7 +48,7 @@ namespace Lab1
             {
                 arrays[i] = new int[i];
                 arrays[i] = Random(i);
-            }
+            }            
             return arrays;
         }
 
@@ -87,11 +87,31 @@ namespace Lab1
 
                     totalTime += stopwatch.Elapsed.TotalMilliseconds;
                 }
-
                 time[i] = totalTime / iterations;
+            }         
+            if (!choice)
+                return time;
+            else
+                return FixArtefact(time);
+        }
+        public static double[] FixArtefact(double[] time)
+        {            
+            for (int i = 1; i<time.Length-1; i++)
+            {
+                if (time[i] > time[i+1]*1.2)
+                {
+                    time[i] = (time[i-1]+time[i+1])/2;
+                }
             }
-
             return time;
-        }       
+        }
+        public static bool choice = false;
+        public static void OnOffSwitch(bool buttonChoice)
+        {
+            if (buttonChoice)
+                choice = true;
+            else 
+                choice = false;
+        }
     }
 }

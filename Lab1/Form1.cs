@@ -73,7 +73,7 @@ namespace Lab1
             for (int i = 0; i < time.Length; i++)
             {
                 this.chart1.Series[0].Points.AddXY(i+1 ,time[i]);
-                this.chart1.Series[1].Points.AddXY(i + 1, 0.00005d);
+                this.chart1.Series[1].Points.AddXY(i + 1, (double)i/700000);
             }
 
 
@@ -88,7 +88,7 @@ namespace Lab1
             for (int i = 0; i < time.Length; i++)
             {
                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
-                this.chart1.Series[1].Points.AddXY(i + 1, 0.00005d);
+                this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
             }
         }
 
@@ -100,7 +100,7 @@ namespace Lab1
             for (int i = 0; i < time.Length; i++)
             {
                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
-                this.chart1.Series[1].Points.AddXY(i + 1, 0.00005d);
+                this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
             }
         }
 
@@ -112,7 +112,7 @@ namespace Lab1
             for (int i = 0; i < time.Length; i++)
             {
                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
-                this.chart1.Series[1].Points.AddXY(i + 1, 0.00005d);
+                this.chart1.Series[1].Points.AddXY(i + 1, (double)i/800000); //при большом n врет
             }
         }
 
@@ -124,7 +124,7 @@ namespace Lab1
             for (int i = 0; i < time.Length; i++)
             {
                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
-                this.chart1.Series[1].Points.AddXY(i + 1, 0.00005d);
+                this.chart1.Series[1].Points.AddXY(i + 1, Math.Pow(i, 2) / 800000);  //делим для улучшения демонстрации графика
             }            
         }
 
@@ -155,6 +155,16 @@ namespace Lab1
         private void алгоритм8ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.OnOffSwitch(true);
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.OnOffSwitch(false);
         }
     }
 }
