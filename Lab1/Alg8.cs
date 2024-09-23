@@ -47,5 +47,58 @@ namespace Lab1
             }
         }
 
+        public static int QuickPow(int x, int n)
+        {
+            int f = 1;
+            int c = x;
+            int k = n;
+
+            if (k%2 == 1)
+            {
+                f = c;
+            }
+
+            else if(k%2 == 0)
+            {
+                f = 1;
+            }
+
+            while (k!=0) 
+            {
+                k = k / 2;
+                c = c * c;
+                if (k % 2 == 1)
+                {
+                    f = f * c;
+                }
+            }
+
+            return f;
+        }
+
+        public static int QuickPow1(int x, int n)
+        {
+            int f = 1;
+            int c = x;
+            int k = n;
+
+            while (k!=0)
+            {
+                if (k%2 == 0)
+                {
+                    c = c * c;
+                    k = k / 2;
+                }
+
+                else if(k%2 == 1)
+                {
+                    f = f * c;
+                    k = k - 1;
+                }
+            }
+
+            return f;
+        }
+
     }
 }
