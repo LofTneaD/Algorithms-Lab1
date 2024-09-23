@@ -9,12 +9,13 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 namespace Lab1
 {
     internal class Alg1
-    {
+    {        
         public static void Run(int[] array)
         {
+            int a;
             foreach (int i in array)
             {
-                Console.WriteLine("1");
+                a = i;
             }
         }
     }

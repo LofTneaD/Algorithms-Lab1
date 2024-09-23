@@ -9,7 +9,6 @@ namespace Lab1
 
     internal class Alg4
     {
-        static double polynomial = 0;
         public static void Run(int[] array)
         {
             double polynomial = 0;
