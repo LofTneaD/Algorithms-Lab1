@@ -18,14 +18,6 @@ namespace Lab1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-
-            /*double[] time = ChoiceAlg();
-            
-            int[] number = new int[time.Length];
-            for (int i = 0; i < number.Length; i++)
-            {
-                number[i] = i+1;
-            }*/
         }
 
         public static int[] Random(int size)
@@ -51,22 +43,6 @@ namespace Lab1
             }            
             return arrays;
         }
-
-        /*public static double[] ChoiceAlg()
-        {
-            int size = 100;
-            int iterations = 5;
-            double[] time = null;
-
-            Console.WriteLine("Выберите алгоритм");
-            switch (Console.ReadLine())
-            {
-                case "1":
-                    time = Measure(Random(size), Alg1.Run, iterations);
-                    break;
-            }
-            return time;
-        }*/
 
         public static double[] Measure(int[][] arrays, Action<int[]> operation, int iterations)
         {

@@ -40,7 +40,6 @@
             this.xTextBox = new System.Windows.Forms.TextBox();
             this.textBox_iterations = new System.Windows.Forms.TextBox();
             this.textBox_n = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -124,7 +123,6 @@
             this.groupBox2.Controls.Add(this.xTextBox);
             this.groupBox2.Controls.Add(this.textBox_iterations);
             this.groupBox2.Controls.Add(this.textBox_n);
-            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -162,15 +160,6 @@
             this.textBox_n.Text = "Размерность n-Вектора";
             this.textBox_n.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_n.TextChanged += new System.EventHandler(this.textBox_n_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 139);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 24);
-            this.label2.TabIndex = 1;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -298,7 +287,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox_iterations;
         private System.Windows.Forms.TextBox textBox_n;
         private System.Windows.Forms.GroupBox groupBox3;

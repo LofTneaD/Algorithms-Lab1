@@ -159,7 +159,49 @@ namespace Lab1
                                 progressBar.Value = (i + 1) * 100 / time.Length;
                             }
                         }));
+                        
 
+                        break;
+                    case 8:
+                        time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), RecPow.Run,
+                            Convert.ToInt32(textBox_iterations.Text), Convert.ToInt32(xTextBox.Text));
+                        Invoke((Action)(() =>
+                        {
+                            for (int i = 0; i < time.Length; i++)
+                            {
+                                this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
+                                this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
+                                progressBar.Value = (i + 1) * 100 / time.Length;
+                            }
+                        }));
+                        break;
+                    
+                    case 9:
+                        time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), QuickPow.Run,
+                            Convert.ToInt32(textBox_iterations.Text), Convert.ToInt32(xTextBox.Text));
+                        Invoke((Action)(() =>
+                        {
+                            for (int i = 0; i < time.Length; i++)
+                            {
+                                this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
+                                this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
+                                progressBar.Value = (i + 1) * 100 / time.Length;
+                            }
+                        }));
+                        break;
+                    
+                    case 10:
+                        time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), ClassikQuickPow.Run,
+                            Convert.ToInt32(textBox_iterations.Text), Convert.ToInt32(xTextBox.Text));
+                        Invoke((Action)(() =>
+                        {
+                            for (int i = 0; i < time.Length; i++)
+                            {
+                                this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
+                                this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
+                                progressBar.Value = (i + 1) * 100 / time.Length;
+                            }
+                        }));
                         break;
                     default:
                         MessageBox.Show("Алгоритм не найден.");

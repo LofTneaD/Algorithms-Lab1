@@ -7,19 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49682993-e164-4fd1-998b-62670c2851a6" name="Changes" comment="Добавлены многопоточность, перегрузка метода Measure, поле ввода для X, плохой прогрессбар, незначительно изменен дизайн, возвращены предполагаемые графики">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Lab1/SimplePow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab1/Alg8.cs" beforeDir="false" />
+    <list default="true" id="49682993-e164-4fd1-998b-62670c2851a6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Lab1/ClassikQuickPow.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab1/QuickPow.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab1/RecPow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1/Form1.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Form1.Designer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Form1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab1/Form1.resx" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Form1.resx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1/Lab1.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Lab1.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab1/SimplePow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/SimplePow.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +98,13 @@
       <option name="presentableId" value="Default" />
       <updated>1726964651667</updated>
       <workItem from="1726964653879" duration="15016000" />
-      <workItem from="1727050241063" duration="971000" />
+      <workItem from="1727050241063" duration="6729000" />
+      <workItem from="1727131350743" duration="35000" />
+      <workItem from="1727131396698" duration="3000" />
+      <workItem from="1727131656974" duration="370000" />
+      <workItem from="1727132096823" duration="12000" />
+      <workItem from="1727132344144" duration="66000" />
+      <workItem from="1727132439800" duration="2561000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -111,7 +114,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726968469747</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Добавлены многопоточность, перегрузка метода Measure, поле ввода для X, плохой прогрессбар, незначительно изменен дизайн, возвращены предполагаемые графики">
+      <option name="closed" value="true" />
+      <created>1727051315066</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727051315066</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

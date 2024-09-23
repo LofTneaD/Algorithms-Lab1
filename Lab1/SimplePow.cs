@@ -11,16 +11,12 @@ namespace Lab1
     {
         public static void Run(int[] array, int x)
         {
-            Simple(array,x);
-        }
-        public static void Simple(int[] array, int x)
-        {
             for (int i = 0; i < array.Length; i++)
             {
                 int temp = 1;
-                for (int j = 0; j < x; j++)
+                for (int j = 0; j < array[i]; j++)
                 {
-                    temp *= array[i];
+                    temp *= x;
                 }
             }
         }
