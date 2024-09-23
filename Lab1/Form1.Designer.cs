@@ -34,8 +34,10 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.algorithmListBox = new System.Windows.Forms.ListBox();
+            this.algorithmComboBox = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.xTextBox = new System.Windows.Forms.TextBox();
             this.textBox_iterations = new System.Windows.Forms.TextBox();
             this.textBox_n = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,10 +47,14 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.buildChartButton = new System.Windows.Forms.Button();
+            this.timer1 = new System.Timers.Timer();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.timer1)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
@@ -95,16 +101,27 @@
             this.groupBox1.Text = "График";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // algorithmListBox
+            // algorithmComboBox
             // 
-            this.algorithmListBox.FormattingEnabled = true;
-            this.algorithmListBox.Location = new System.Drawing.Point(851, 436);
-            this.algorithmListBox.Name = "algorithmListBox";
-            this.algorithmListBox.Size = new System.Drawing.Size(307, 121);
-            this.algorithmListBox.TabIndex = 1;
+            this.algorithmComboBox.FormattingEnabled = true;
+            this.algorithmComboBox.Location = new System.Drawing.Point(881, 466);
+            this.algorithmComboBox.Name = "algorithmComboBox";
+            this.algorithmComboBox.Size = new System.Drawing.Size(245, 21);
+            this.algorithmComboBox.TabIndex = 3;
+            this.algorithmComboBox.Text = "Выберите алгоритм";
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(95, 692);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(547, 23);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Размерность n-вектора";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.xTextBox);
             this.groupBox2.Controls.Add(this.textBox_iterations);
             this.groupBox2.Controls.Add(this.textBox_n);
             this.groupBox2.Controls.Add(this.label2);
@@ -118,29 +135,42 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Параметры";
             // 
+            // xTextBox
+            // 
+            this.xTextBox.Location = new System.Drawing.Point(30, 41);
+            this.xTextBox.Name = "xTextBox";
+            this.xTextBox.Size = new System.Drawing.Size(265, 28);
+            this.xTextBox.TabIndex = 0;
+            this.xTextBox.Text = "X";
+            this.xTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // textBox_iterations
             // 
-            this.textBox_iterations.Location = new System.Drawing.Point(189, 101);
+            this.textBox_iterations.Location = new System.Drawing.Point(30, 139);
             this.textBox_iterations.Name = "textBox_iterations";
-            this.textBox_iterations.Size = new System.Drawing.Size(100, 28);
+            this.textBox_iterations.Size = new System.Drawing.Size(265, 28);
             this.textBox_iterations.TabIndex = 3;
+            this.textBox_iterations.Text = "Количество интераций";
+            this.textBox_iterations.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox_n
             // 
-            this.textBox_n.Location = new System.Drawing.Point(78, 42);
+            this.textBox_n.Location = new System.Drawing.Point(30, 92);
             this.textBox_n.Name = "textBox_n";
-            this.textBox_n.Size = new System.Drawing.Size(100, 28);
+            this.textBox_n.Size = new System.Drawing.Size(265, 28);
             this.textBox_n.TabIndex = 2;
+            this.textBox_n.Text = "Размерность n-Вектора";
+            this.textBox_n.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_n.TextChanged += new System.EventHandler(this.textBox_n_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 101);
+            this.label2.Location = new System.Drawing.Point(30, 139);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 24);
+            this.label2.Size = new System.Drawing.Size(0, 24);
             this.label2.TabIndex = 1;
-            this.label2.Text = "к-во итераций";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -148,11 +178,10 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(30, 42);
+            this.label1.Location = new System.Drawing.Point(30, 92);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 24);
+            this.label1.Size = new System.Drawing.Size(0, 24);
             this.label1.TabIndex = 0;
-            this.label1.Text = "n =";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // groupBox3
@@ -198,8 +227,28 @@
             this.buildChartButton.Name = "buildChartButton";
             this.buildChartButton.Size = new System.Drawing.Size(307, 55);
             this.buildChartButton.TabIndex = 4;
-            this.buildChartButton.Text = "button1";
+            this.buildChartButton.Text = "Построить график";
             this.buildChartButton.UseVisualStyleBackColor = true;
+            // 
+            // timer1
+            // 
+            this.timer1.SynchronizingObject = this;
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(881, 689);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(245, 23);
+            this.progressBar.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(851, 440);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(307, 23);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Выберите алгоритм";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
@@ -207,14 +256,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1158, 724);
-            this.Controls.Add(this.algorithmListBox);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.algorithmComboBox);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.buildChartButton);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Location = new System.Drawing.Point(15, 15);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Laboratory Work No.1";
+            this.Text = "Лабораторная работа #1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -222,12 +275,22 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.timer1)).EndInit();
             this.ResumeLayout(false);
         }
 
-        private System.Windows.Forms.Button buildChartButton;
+        private System.Windows.Forms.Label label4;
 
-        private System.Windows.Forms.ListBox algorithmListBox;
+        private System.Windows.Forms.ProgressBar progressBar;
+
+        private System.Windows.Forms.ComboBox algorithmComboBox;
+        private System.Timers.Timer timer1;
+
+        private System.Windows.Forms.Label label3;
+
+        private System.Windows.Forms.TextBox xTextBox;
+
+        private System.Windows.Forms.Button buildChartButton;
 
         #endregion
 

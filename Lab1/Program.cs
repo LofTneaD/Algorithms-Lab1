@@ -94,6 +94,32 @@ namespace Lab1
             else
                 return FixArtefact(time);
         }
+        public static double[] Measure(int[][] arrays, Action<int[], int> operation, int iterations, int x)
+        {
+            double[] time = new double[arrays.Length];
+            Stopwatch stopwatch = new Stopwatch();
+
+            for (int i = 0; i < arrays.Length; i++)
+            {
+                double totalTime = 0;
+
+                for (int j = 0; j < iterations; j++)
+                {
+                    stopwatch.Restart();
+
+                    operation(arrays[i],x);
+
+                    stopwatch.Stop();
+
+                    totalTime += stopwatch.Elapsed.TotalMilliseconds;
+                }
+                time[i] = totalTime / iterations;
+            }         
+            if (!choice)
+                return time;
+            else
+                return FixArtefact(time);
+        }
         public static double[] FixArtefact(double[] time)
         {            
             for (int i = 1; i<time.Length-1; i++)
