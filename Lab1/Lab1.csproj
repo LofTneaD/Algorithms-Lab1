@@ -55,6 +55,7 @@
     <Compile Include="Alg6.cs" />
     <Compile Include="Alg7.cs" />
     <Compile Include="Alg8.cs" />
+    <Compile Include="CocktailSort.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
