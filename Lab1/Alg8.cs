@@ -12,7 +12,9 @@ namespace Lab1
         public static void Run(int x, int n)
         {
             SimplePow(x, n);
-            //RecPow(x, n);
+            RecPow(x, n);
+            QuickPow(x, n);
+            QuickPow1(x, n);
         }
         public static int SimplePow(int x, int n)
         {
