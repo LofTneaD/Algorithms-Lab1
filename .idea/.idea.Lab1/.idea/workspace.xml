@@ -7,8 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49682993-e164-4fd1-998b-62670c2851a6" name="Changes" comment="Повторно нажать на кнопку до окончания построения графика больше нельзя, прогрессбар удален">
+    <list default="true" id="49682993-e164-4fd1-998b-62670c2851a6" name="Changes" comment="Повторно нажать на кнопку до того как построился график больше нельзя, удален прогрессбар">
+      <change afterPath="$PROJECT_DIR$/Lab1/MatrixMultiplication.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Form1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab1/Lab1.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Lab1.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab1/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +28,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://D:/C# projects/Algorithms-Lab1v2/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/C# projects/Algorithms-Lab1v2/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -97,7 +102,7 @@
       <workItem from="1727132096823" duration="12000" />
       <workItem from="1727132344144" duration="66000" />
       <workItem from="1727132439800" duration="2561000" />
-      <workItem from="1727161487355" duration="1860000" />
+      <workItem from="1727161487355" duration="7615000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -123,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727163088885</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Повторно нажать на кнопку до того как построился график больше нельзя, удален прогрессбар">
+      <option name="closed" value="true" />
+      <created>1727163467349</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727163467349</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,6 +148,7 @@
     <MESSAGE value="1" />
     <MESSAGE value="Добавлены многопоточность, перегрузка метода Measure, поле ввода для X, плохой прогрессбар, незначительно изменен дизайн, возвращены предполагаемые графики" />
     <MESSAGE value="Повторно нажать на кнопку до окончания построения графика больше нельзя, прогрессбар удален" />
-    <option name="LAST_COMMIT_MESSAGE" value="Повторно нажать на кнопку до окончания построения графика больше нельзя, прогрессбар удален" />
+    <MESSAGE value="Повторно нажать на кнопку до того как построился график больше нельзя, удален прогрессбар" />
+    <option name="LAST_COMMIT_MESSAGE" value="Повторно нажать на кнопку до того как построился график больше нельзя, удален прогрессбар" />
   </component>
 </project>

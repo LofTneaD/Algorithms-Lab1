@@ -20,7 +20,7 @@ namespace Lab1
             Application.Run(new Form1());
         }
 
-        public static int[] Random(int size)
+        public static int[] RandomArray(int size)
         {
             int[] randomArray = new int[size];
 
@@ -32,16 +32,42 @@ namespace Lab1
 
             return randomArray;
         }
-
         public static int[][] MakeMassives(int n)
         {
             int[][] arrays = new int[n][];
             for (int i = 0; i < n; i++)
             {
                 arrays[i] = new int[i];
-                arrays[i] = Random(i);
+                arrays[i] = RandomArray(i);
             }            
             return arrays;
+        }
+        public static int[,] RandomMatrix(int size)
+        {
+            int[,] matrix = new int[size, size];
+            Random random = new Random();
+
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    matrix[i, j] = random.Next();
+                }
+            }
+            return matrix;
+        }
+        public static int[][,] MakeMatrices(int n)
+        {
+            int[][,] matrices = new int[n][,];
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    matrices[i] = new int[i,j];
+                    matrices[i] = RandomMatrix(i);
+                }
+            }            
+            return matrices;
         }
 
         public static double[] Measure(int[][] arrays, Action<int[]> operation, int iterations)
@@ -96,6 +122,33 @@ namespace Lab1
             else
                 return FixArtefact(time);
         }
+        
+        public static double[] MeasureMatrix(int[][,] aMatrixArrays ,int[][,] bMatrixArrays, Action<int[,], int[,],int> operation, int iterations, int n)
+        {
+            double[] time = new double[aMatrixArrays.Length];
+            Stopwatch stopwatch = new Stopwatch();
+
+            for (int i = 0; i < aMatrixArrays.Length; i++)
+            {
+                double totalTime = 0;
+                for (int j = 0; j < iterations; j++)
+                {
+                    stopwatch.Restart();
+                        
+                    operation(aMatrixArrays[i], bMatrixArrays[i], n);
+                        
+                    stopwatch.Stop();
+                        
+                    totalTime += stopwatch.Elapsed.TotalMilliseconds;
+                }
+                time[i] = totalTime / iterations;
+            }         
+            if (!choice)
+                return time;
+            else
+                return FixArtefact(time);
+        }
+
         public static double[] FixArtefact(double[] time)
         {            
             for (int i = 1; i<time.Length-1; i++)

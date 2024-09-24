@@ -14,7 +14,8 @@ namespace Lab1
             algorithmComboBox.Items.AddRange(new string[]
             {
                 "постоянная функция", "сумма элементов", "произведение элементов",
-                "полином", "Bubble sort", "Quick sort", "Timsort","SimplePow","RecPow","QuickPow","ClassikQuickPow"
+                "полином", "Bubble sort", "Quick sort", "Timsort","SimplePow",
+                "RecPow","QuickPow","ClassikQuickPow", "Умножение матриц"
             });
             this.Controls.Add(algorithmComboBox);
             this.algorithmComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -42,8 +43,9 @@ namespace Lab1
 
             IsBuildingChart = true;
             ClearGraphic();
-
-            await Task.Run(() =>
+            try
+            {
+                await Task.Run(() =>
             {
                 double[] time;
                 switch (selectedIndex)
@@ -192,15 +194,33 @@ namespace Lab1
                             }
                         }));
                         break;
+                    
+                    case 11:
+                        time = Program.MeasureMatrix(Program.MakeMatrices(Convert.ToInt32(textBox_n.Text)), 
+                            Program.MakeMatrices(Convert.ToInt32(textBox_n.Text)), MatrixMultiplication.Run,
+                            Convert.ToInt32(textBox_iterations.Text), Convert.ToInt32(textBox_n.Text));
+                        Invoke((Action)(() =>
+                        {
+                            for (int i = 0; i < time.Length; i++)
+                            {
+                                this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
+                                this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
+                            }
+                        }));
+                        break;
+                    
                     default:
                         MessageBox.Show("Алгоритм не найден.");
-                        IsBuildingChart = false;
                         return;
                 }
-
             });
+            }
+            finally
+            {
+                IsBuildingChart = false;
+            }
+            
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
