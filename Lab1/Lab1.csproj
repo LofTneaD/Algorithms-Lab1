@@ -54,7 +54,10 @@
     <Compile Include="Alg5.cs" />
     <Compile Include="Alg6.cs" />
     <Compile Include="Alg7.cs" />
-    <Compile Include="Alg8.cs" />
+    <Compile Include="ClassikQuickPow.cs" />
+    <Compile Include="QuickPow.cs" />
+    <Compile Include="RecPow.cs" />
+    <Compile Include="SimplePow.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
