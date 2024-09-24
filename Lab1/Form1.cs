@@ -22,16 +22,17 @@ namespace Lab1
             buildChartButton.Text = "Построить график";
             buildChartButton.Click += BuildChartButton_Click;
             this.Controls.Add(buildChartButton);
-            
-            
-            this.Controls.Add(progressBar);
-            progressBar.Minimum = 0;
-            progressBar.Maximum = 100;
-            
         }
 
+        public static bool IsBuildingChart;
         private async void BuildChartButton_Click(object sender, EventArgs e)
         {
+            if (IsBuildingChart)
+            {
+                MessageBox.Show("Построение графика уже выполняется, дождитесь завершения.");
+                return;
+            }
+            
             int selectedIndex = algorithmComboBox.SelectedIndex;
             if (selectedIndex == -1)
             {
@@ -39,9 +40,8 @@ namespace Lab1
                 return;
             }
 
+            IsBuildingChart = true;
             ClearGraphic();
-            progressBar.Value = 0;
-            int iterations = Convert.ToInt32(textBox_iterations.Text);
 
             await Task.Run(() =>
             {
@@ -57,7 +57,6 @@ namespace Lab1
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                                 this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
-                                progressBar.Value = (i + 1) * 100 / time.Length;
                             }
                         }));
                         break;
@@ -71,7 +70,6 @@ namespace Lab1
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                                 this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
-                                progressBar.Value = (i + 1) * 100 / time.Length;
                             }
                         }));
                         break;
@@ -85,7 +83,6 @@ namespace Lab1
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                                 this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
-                                progressBar.Value = (i + 1) * 100 / time.Length;
                             }
                         }));
                         break;
@@ -99,7 +96,6 @@ namespace Lab1
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                                 this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
-                                progressBar.Value = (i + 1) * 100 / time.Length;
                             }
                         }));
                         break;
@@ -113,7 +109,6 @@ namespace Lab1
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                                 this.chart1.Series[1].Points.AddXY(i + 1, Math.Pow(i, 2) / 800000);  //делим для улучшения демонстрации графика
-                                progressBar.Value = (i + 1) * 100 / time.Length;
                             }    
                         }));
 
@@ -128,7 +123,6 @@ namespace Lab1
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                                 this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
-                                progressBar.Value = (i + 1) * 100 / time.Length;
                             }
                         }));
 
@@ -142,7 +136,6 @@ namespace Lab1
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                                 this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
-                                progressBar.Value = (i + 1) * 100 / time.Length;
                             }
                         }));
 
@@ -156,7 +149,6 @@ namespace Lab1
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                                 this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
-                                progressBar.Value = (i + 1) * 100 / time.Length;
                             }
                         }));
                         
@@ -171,7 +163,6 @@ namespace Lab1
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                                 this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
-                                progressBar.Value = (i + 1) * 100 / time.Length;
                             }
                         }));
                         break;
@@ -185,7 +176,6 @@ namespace Lab1
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                                 this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
-                                progressBar.Value = (i + 1) * 100 / time.Length;
                             }
                         }));
                         break;
@@ -199,12 +189,12 @@ namespace Lab1
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                                 this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
-                                progressBar.Value = (i + 1) * 100 / time.Length;
                             }
                         }));
                         break;
                     default:
                         MessageBox.Show("Алгоритм не найден.");
+                        IsBuildingChart = false;
                         return;
                 }
 

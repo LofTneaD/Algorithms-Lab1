@@ -47,7 +47,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.buildChartButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Timers.Timer();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -223,13 +222,6 @@
             // 
             this.timer1.SynchronizingObject = this;
             // 
-            // progressBar
-            // 
-            this.progressBar.Location = new System.Drawing.Point(881, 689);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(245, 23);
-            this.progressBar.TabIndex = 5;
-            // 
             // label4
             // 
             this.label4.Location = new System.Drawing.Point(851, 440);
@@ -247,7 +239,6 @@
             this.ClientSize = new System.Drawing.Size(1158, 724);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.algorithmComboBox);
-            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.buildChartButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox3);
@@ -269,8 +260,6 @@
         }
 
         private System.Windows.Forms.Label label4;
-
-        private System.Windows.Forms.ProgressBar progressBar;
 
         private System.Windows.Forms.ComboBox algorithmComboBox;
         private System.Timers.Timer timer1;
