@@ -35,7 +35,6 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.algorithmComboBox = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.xTextBox = new System.Windows.Forms.TextBox();
             this.textBox_iterations = new System.Windows.Forms.TextBox();
@@ -108,15 +107,6 @@
             this.algorithmComboBox.TabIndex = 3;
             this.algorithmComboBox.Text = "Выберите алгоритм";
             // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(95, 692);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(547, 23);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Размерность n-вектора";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.xTextBox);
@@ -134,7 +124,7 @@
             // 
             // xTextBox
             // 
-            this.xTextBox.Location = new System.Drawing.Point(30, 41);
+            this.xTextBox.Location = new System.Drawing.Point(30, 145);
             this.xTextBox.Name = "xTextBox";
             this.xTextBox.Size = new System.Drawing.Size(265, 28);
             this.xTextBox.TabIndex = 0;
@@ -143,7 +133,7 @@
             // 
             // textBox_iterations
             // 
-            this.textBox_iterations.Location = new System.Drawing.Point(30, 139);
+            this.textBox_iterations.Location = new System.Drawing.Point(30, 41);
             this.textBox_iterations.Name = "textBox_iterations";
             this.textBox_iterations.Size = new System.Drawing.Size(265, 28);
             this.textBox_iterations.TabIndex = 3;
@@ -240,7 +230,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.algorithmComboBox);
             this.Controls.Add(this.buildChartButton);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -263,8 +252,6 @@
 
         private System.Windows.Forms.ComboBox algorithmComboBox;
         private System.Timers.Timer timer1;
-
-        private System.Windows.Forms.Label label3;
 
         private System.Windows.Forms.TextBox xTextBox;
 
