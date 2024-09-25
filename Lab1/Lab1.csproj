@@ -55,6 +55,7 @@
     <Compile Include="Alg6.cs" />
     <Compile Include="Alg7.cs" />
     <Compile Include="ClassikQuickPow.cs" />
+    <Compile Include="CocktailSort.cs" />
     <Compile Include="TreeSort.cs" />
     <Compile Include="MatrixMultiplication.cs" />
     <Compile Include="QuickPow.cs" />

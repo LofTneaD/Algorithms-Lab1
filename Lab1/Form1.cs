@@ -15,7 +15,7 @@ namespace Lab1
             {
                 "постоянная функция", "сумма элементов", "произведение элементов",
                 "полином", "Bubble sort", "Quick sort", "Timsort","SimplePow",
-                "RecPow","QuickPow","ClassikQuickPow", "Умножение матриц", "TreeSort"
+                "RecPow","QuickPow","ClassikQuickPow", "Умножение матриц", "TreeSort", "CocktailSort"
             });
             this.Controls.Add(algorithmComboBox);
             this.algorithmComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -240,6 +240,18 @@ namespace Lab1
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                                 this.chart1.Series[1].Points.AddXY(i + 1, i*Math.Log(i,2)/30000);
+                            }
+                        }));
+                        break;
+                    case 13: //CocktailSort
+                        time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Treesort.Run,
+                            Convert.ToInt32(textBox_iterations.Text));
+                        Invoke((Action)(() =>
+                        {
+                            for (int i = 0; i < time.Length; i++)
+                            {
+                                this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
+                                this.chart1.Series[1].Points.AddXY(i + 1, Math.Pow(2,i)/30000);
                             }
                         }));
                         break;
