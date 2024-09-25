@@ -146,7 +146,7 @@ namespace Lab1
                             for (int i = 0; i < time.Length; i++)
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
-                                this.chart1.Series[1].Points.AddXY(i + 1, i*Math.Log(i,2)/150000);
+                                this.chart1.Series[1].Points.AddXY(i + 1, i*Math.Log(i,2)/140000);
                             }
                         }));
 
@@ -172,7 +172,7 @@ namespace Lab1
                             for (int i = 0; i < time.Length; i++)
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
-                                this.chart1.Series[1].Points.AddXY(i + 1, (double)i / 700000);
+                                this.chart1.Series[1].Points.AddXY(i + 1, (double)i*500);
                             }
                         }));
                         
@@ -227,6 +227,19 @@ namespace Lab1
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                                 this.chart1.Series[1].Points.AddXY(i + 1, Math.Pow(i, 3) / 300000);
+                            }
+                        }));
+                        break;
+                    
+                    case 12: //TreeSort
+                        time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Treesort.Run,
+                            Convert.ToInt32(textBox_iterations.Text));
+                        Invoke((Action)(() =>
+                        {
+                            for (int i = 0; i < time.Length; i++)
+                            {
+                                this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
+                                this.chart1.Series[1].Points.AddXY(i + 1, i*Math.Log(i,2)/140000);
                             }
                         }));
                         break;
