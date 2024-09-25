@@ -7,9 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49682993-e164-4fd1-998b-62670c2851a6" name="Changes" comment="добавлены все графики кроме SimplePow, xTextBox появляется только при выборе степенных алгоритмов, текст в текстбоксах пропадает при нажатии на них">
+    <list default="true" id="49682993-e164-4fd1-998b-62670c2851a6" name="Changes" comment="Добавлен алгоритм TreeSort">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Form1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab1/TreeSort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/TreeSort.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +26,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://D:/C# projects/Algorithms-Lab1v2/Lab1/Alg4.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/C# projects/Algorithms-Lab1v2/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/C# projects/Algorithms-Lab1v2/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/C# projects/Algorithms-Lab1v2/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
@@ -101,7 +103,7 @@
       <workItem from="1727132096823" duration="12000" />
       <workItem from="1727132344144" duration="66000" />
       <workItem from="1727132439800" duration="2561000" />
-      <workItem from="1727161487355" duration="28089000" />
+      <workItem from="1727161487355" duration="36375000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -151,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727219104157</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Добавлен алгоритм TreeSort">
+      <option name="closed" value="true" />
+      <created>1727238657001</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1727238657001</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,6 +176,7 @@
     <MESSAGE value="Повторно нажать на кнопку до того как построился график больше нельзя, удален прогрессбар" />
     <MESSAGE value="добавленны перемножение матриц, чекр на процесс построения графика" />
     <MESSAGE value="добавлены все графики кроме SimplePow, xTextBox появляется только при выборе степенных алгоритмов, текст в текстбоксах пропадает при нажатии на них" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавлены все графики кроме SimplePow, xTextBox появляется только при выборе степенных алгоритмов, текст в текстбоксах пропадает при нажатии на них" />
+    <MESSAGE value="Добавлен алгоритм TreeSort" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлен алгоритм TreeSort" />
   </component>
 </project>

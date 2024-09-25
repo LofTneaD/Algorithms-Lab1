@@ -15,7 +15,7 @@ namespace Lab1
             {
                 "постоянная функция", "сумма элементов", "произведение элементов",
                 "полином", "Bubble sort", "Quick sort", "Timsort","SimplePow",
-                "RecPow","QuickPow","ClassikQuickPow", "Умножение матриц"
+                "RecPow","QuickPow","ClassikQuickPow", "Умножение матриц", "TreeSort"
             });
             this.Controls.Add(algorithmComboBox);
             this.algorithmComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -172,7 +172,7 @@ namespace Lab1
                             for (int i = 0; i < time.Length; i++)
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
-                                this.chart1.Series[1].Points.AddXY(i + 1, (double)i*500);
+                                this.chart1.Series[1].Points.AddXY(i + 1, (double)i*1000);
                             }
                         }));
                         
@@ -239,7 +239,7 @@ namespace Lab1
                             for (int i = 0; i < time.Length; i++)
                             {
                                 this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
-                                this.chart1.Series[1].Points.AddXY(i + 1, i*Math.Log(i,2)/140000);
+                                this.chart1.Series[1].Points.AddXY(i + 1, i*Math.Log(i,2)/30000);
                             }
                         }));
                         break;
