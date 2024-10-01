@@ -7,7 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49682993-e164-4fd1-998b-62670c2851a6" name="Changes" comment="обновлена отрисовка графика">
+    <list default="true" id="49682993-e164-4fd1-998b-62670c2851a6" name="Changes" comment="fixes">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Form1.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Program.cs" afterDir="false" />
@@ -28,6 +28,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Lab1/ClassikQuickPow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Lab1/MatrixMultiplication.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Lab1/Program.cs" root0="FORCE_HIGHLIGHTING" />
@@ -110,7 +111,7 @@
       <workItem from="1727405172145" duration="6000" />
       <workItem from="1727778937355" duration="6259000" />
       <workItem from="1727785220554" duration="4745000" />
-      <workItem from="1727805804315" duration="10333000" />
+      <workItem from="1727805804315" duration="12087000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -184,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727813663369</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fixes">
+      <option name="closed" value="true" />
+      <created>1727816401586</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1727816401586</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,7 +223,8 @@
     <MESSAGE value="добавлена отрисовка графика в реальном времени" />
     <MESSAGE value="кнопка построения графика отключается пока график строится, приоритетная платформа-64бит" />
     <MESSAGE value="обновлена отрисовка графика" />
-    <option name="LAST_COMMIT_MESSAGE" value="обновлена отрисовка графика" />
+    <MESSAGE value="fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

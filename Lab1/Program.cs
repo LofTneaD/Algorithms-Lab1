@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.CSharp.RuntimeBinder;
@@ -66,13 +67,17 @@ namespace Lab1
             }            
             return matrices;
         }
-        public static double[] Measure(int[][] arrays, Action<int[]> operation, int iterations, Action<int, double> updateChartCallback)
+        public static double[] Measure(int[][] arrays, Action<int[]> operation, int iterations, Action<int, double> updateChartCallback,CancellationToken token)
         {
             double[] time = new double[arrays.Length];
             Stopwatch stopwatch = new Stopwatch();
 
             for (int i = 0; i < arrays.Length; i++)
             {
+                if (token.IsCancellationRequested) 
+                {
+                    throw new OperationCanceledException(token);
+                }
                 double totalTime = 0;
 
                 for (int j = 0; j < iterations; j++)
@@ -88,20 +93,24 @@ namespace Lab1
 
                 time[i] = totalTime / iterations;
 
-                // Обновляем график после каждой итерации
                 updateChartCallback(i, time[i]);
             }
 
             return !choice ? time : FixArtefact(time);
         }
         
-        public static double[] Measure(int[][] arrays, Action<int[],int> operation, int iterations, Action<int, double> updateChartCallback, int x)
+        public static double[] Measure(int[][] arrays, Action<int[],int> operation, int iterations, Action<int, double> updateChartCallback, int x,CancellationToken token)
         {
             double[] time = new double[arrays.Length];
             Stopwatch stopwatch = new Stopwatch();
 
             for (int i = 0; i < arrays.Length; i++)
             {
+                if (token.IsCancellationRequested)
+                {
+                    throw new OperationCanceledException(token); 
+                }
+                
                 double totalTime = 0;
 
                 for (int j = 0; j < iterations; j++)
@@ -116,21 +125,25 @@ namespace Lab1
                 }
 
                 time[i] = totalTime / iterations;
-
-                // Обновляем график после каждой итерации
+                
                 updateChartCallback(i, time[i]);
             }
 
             return !choice ? time : FixArtefact(time);
         }
         
-        public static double[] MeasureMatrixes(int[][,] aMatrixArrays ,int[][,] bMatrixArrays, Action<int[,], int[,]> operation, int iterations, Action<int, double> updateChartCallback)
+        public static double[] MeasureMatrixes(int[][,] aMatrixArrays ,int[][,] bMatrixArrays, Action<int[,], int[,]> operation, int iterations, Action<int, double> updateChartCallback,CancellationToken token)
         {
             double[] time = new double[aMatrixArrays.Length];
             Stopwatch stopwatch = new Stopwatch();
 
             for (int i = 0; i < aMatrixArrays.Length; i++)
             {
+                if (token.IsCancellationRequested)
+                {
+                    throw new OperationCanceledException(token);
+                }
+                
                 double totalTime = 0;
 
                 for (int j = 0; j < iterations; j++)
@@ -145,8 +158,7 @@ namespace Lab1
                 }
 
                 time[i] = totalTime / iterations;
-
-                // Обновляем график после каждой итерации
+                
                 updateChartCallback(i, time[i]);
             }
 
