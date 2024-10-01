@@ -66,8 +66,7 @@ namespace Lab1
             }            
             return matrices;
         }
-
-        public static double[] Measure(int[][] arrays, Action<int[]> operation, int iterations)
+        public static double[] Measure(int[][] arrays, Action<int[]> operation, int iterations, Action<int, double> updateChartCallback)
         {
             double[] time = new double[arrays.Length];
             Stopwatch stopwatch = new Stopwatch();
@@ -86,14 +85,17 @@ namespace Lab1
 
                     totalTime += stopwatch.Elapsed.TotalMilliseconds;
                 }
+
                 time[i] = totalTime / iterations;
-            }         
-            if (!choice)
-                return time;
-            else
-                return FixArtefact(time);
+
+                // Обновляем график после каждой итерации
+                updateChartCallback(i, time[i]);
+            }
+
+            return !choice ? time : FixArtefact(time);
         }
-        public static double[] Measure(int[][] arrays, Action<int[], int> operation, int iterations, int x)
+        
+        public static double[] Measure(int[][] arrays, Action<int[],int> operation, int iterations, Action<int, double> updateChartCallback, int x)
         {
             double[] time = new double[arrays.Length];
             Stopwatch stopwatch = new Stopwatch();
@@ -112,15 +114,17 @@ namespace Lab1
 
                     totalTime += stopwatch.Elapsed.TotalMilliseconds;
                 }
+
                 time[i] = totalTime / iterations;
-            }         
-            if (!choice)
-                return time;
-            else
-                return FixArtefact(time);
+
+                // Обновляем график после каждой итерации
+                updateChartCallback(i, time[i]);
+            }
+
+            return !choice ? time : FixArtefact(time);
         }
         
-        public static double[] MeasureMatrix(int[][,] aMatrixArrays ,int[][,] bMatrixArrays, Action<int[,], int[,],int> operation, int iterations, int n)
+        public static double[] Measure(int[][,] aMatrixArrays ,int[][,] bMatrixArrays, Action<int[,], int[,]> operation, int iterations, Action<int, double> updateChartCallback)
         {
             double[] time = new double[aMatrixArrays.Length];
             Stopwatch stopwatch = new Stopwatch();
@@ -128,24 +132,26 @@ namespace Lab1
             for (int i = 0; i < aMatrixArrays.Length; i++)
             {
                 double totalTime = 0;
+
                 for (int j = 0; j < iterations; j++)
                 {
                     stopwatch.Restart();
-                        
-                    operation(aMatrixArrays[i], bMatrixArrays[i], n);
-                        
+
+                    operation(aMatrixArrays[i], bMatrixArrays[i]);
+
                     stopwatch.Stop();
-                        
+
                     totalTime += stopwatch.Elapsed.TotalMilliseconds;
                 }
-                time[i] = totalTime / iterations;
-            }         
-            if (!choice)
-                return time;
-            else
-                return FixArtefact(time);
-        }
 
+                time[i] = totalTime / iterations;
+
+                // Обновляем график после каждой итерации
+                updateChartCallback(i, time[i]);
+            }
+
+            return !choice ? time : FixArtefact(time);
+        }
         public static double[] FixArtefact(double[] time)
         {            
             for (int i = 1; i<time.Length-1; i++)

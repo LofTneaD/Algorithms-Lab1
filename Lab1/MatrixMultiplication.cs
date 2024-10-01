@@ -2,7 +2,7 @@ namespace Lab1
 {
     public static class MatrixMultiplication
     {
-        public static void Run(int[,] aMatrix, int[,] bMatrix,int n)
+        public static void Run(int[,] aMatrix, int[,] bMatrix)
         {
             int rA = aMatrix.GetLength(0);
             int cA = aMatrix.GetLength(1);

@@ -50,61 +50,33 @@ namespace Lab1
             textBox_iterations.LostFocus += interationsAddText;
 
         }
-        
-        private bool cancelDrawing;
-
-        private async Task DrawLines(double[] time, Func<int, double> factor)
+        private async Task DrawLine(double[] time, Func<int, double> factor)
         {
-            cancelDrawing = false;
-
             for (int i = 0; i < time.Length; i++)
             {
                 if (cancelDrawing) break;
 
                 Invoke((Action)(() =>
                 {
-                    this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
                     this.chart1.Series[1].Points.AddXY(i + 1, factor(i));
                 }));
-
-                await Task.Delay(0);
-            }
-            
-            if (!cancelDrawing)
-            {
-                Invoke((Action)(() =>
-                {
-                    this.chart1.ChartAreas[0].RecalculateAxesScale();
-                }));
             }
         }
-
-        private async Task DrawLines(double[] time, double factor)
+        
+        private async Task DrawLine(double[] time, double factor)
         {
-            cancelDrawing = false;
-
             for (int i = 0; i < time.Length; i++)
             {
                 if (cancelDrawing) break;
 
                 Invoke((Action)(() =>
                 {
-                    this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
-                    this.chart1.Series[1].Points.AddXY(i + 1, (double)i / factor);
-                }));
-
-                await Task.Delay(0);
-            }
-
-            if (!cancelDrawing)
-            {
-                Invoke((Action)(() =>
-                {
-                    this.chart1.ChartAreas[0].RecalculateAxesScale();
+                    this.chart1.Series[1].Points.AddXY(i + 1,i/factor);
                 }));
             }
         }
-
+        
+        private bool cancelDrawing;
         private async void BuildChartButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = algorithmComboBox.SelectedIndex;
@@ -116,97 +88,107 @@ namespace Lab1
             
             buildChartButton.Enabled = false;
             Invoke((Action)ClearGraphic);
-            
             try
             {
                 await Task.Run(async () =>
             {
                 double[] time;
+                Action<int, double> updateChart = (index, elapsedTime) =>
+                {
+                    if (cancelDrawing) return;
+                    Invoke((Action)(() =>
+                    {
+                        
+                        this.chart1.Series[0].Points.AddXY(index + 1, elapsedTime);
+                        this.chart1.ChartAreas[0].RecalculateAxesScale();
+                    }));
+                };
+
                 switch (selectedIndex)
                 {
                     case 0:
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg1.Run,
-                            Convert.ToInt32(textBox_iterations.Text));
-                        await DrawLines(time, 1300000);
+                            Convert.ToInt32(textBox_iterations.Text), updateChart);
+                        DrawLine(time, 2700000);
                         break;
                     
                     case 1:
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg2.Run,
-                            Convert.ToInt32(textBox_iterations.Text));
-                        await DrawLines(time, 1100000);
+                            Convert.ToInt32(textBox_iterations.Text), updateChart);
+                        await DrawLine(time, 1100000);
                         break;
                     
                     case 2:
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg3.Run,
-                            Convert.ToInt32(textBox_iterations.Text));
-                        await DrawLines(time, 610000);
+                            Convert.ToInt32(textBox_iterations.Text), updateChart);
+                        await DrawLine(time, 610000);
                         break;
                     
                     case 3:
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg4.Run,
-                            Convert.ToInt32(textBox_iterations.Text));
-                        await DrawLines(time, 200000);
+                            Convert.ToInt32(textBox_iterations.Text), updateChart);
+                        await DrawLine(time, 200000);
                         break;
                     
                     case 4://BubbleSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg5.BubbleSort,
-                            Convert.ToInt32(textBox_iterations.Text));
-                        await DrawLines(time, i => Math.Pow(i, 2) / 1400000);
+                            Convert.ToInt32(textBox_iterations.Text), updateChart);
+                        await DrawLine(time, i => Math.Pow(i, 2) / 1600000);
                         break;
                     
                     case 5: //QuickSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg6.Run,
-                            Convert.ToInt32(textBox_iterations.Text));
-                        await DrawLines(time, i => i*Math.Log(i,2)/140000);
+                            Convert.ToInt32(textBox_iterations.Text), updateChart);
+                        await DrawLine(time, i => i*Math.Log(i,2)/140000);
                         break;
                     
                     case 6://TimSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg7.Run,
-                            Convert.ToInt32(textBox_iterations.Text));
-                        await DrawLines(time, i => i*Math.Log(i,2)/450000);
+                            Convert.ToInt32(textBox_iterations.Text), updateChart);
+                        await DrawLine(time, i => i*Math.Log(i,2)/450000);
 
                         break;
                     case 7://SimplePow
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), SimplePow.Run,
-                            Convert.ToInt32(textBox_iterations.Text), Convert.ToInt32(xTextBox.Text));
-                        await DrawLines(time, i => i*1000);
+                            Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text));
+                        await DrawLine(time, i => i*1000);
 
                         break;
                     case 8://RecPow
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), RecPow.Run,
-                            Convert.ToInt32(textBox_iterations.Text), Convert.ToInt32(xTextBox.Text));
-                        await DrawLines(time, i => i*Math.Log(i,2)/10000);
+                            Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text));
+                        await DrawLine(time, i => i*Math.Log(i,2)/10000);
                         break;
                     
                     case 9://QuickPow
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), QuickPow.Run,
-                            Convert.ToInt32(textBox_iterations.Text), Convert.ToInt32(xTextBox.Text));
-                        await DrawLines(time, i => i*Math.Log(i,2)/30000);
+                            Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text));
+                        await DrawLine(time, i => i*Math.Log(i,2)/30000);
                         break;
                     
                     case 10://ClassikQuickPow
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), ClassikQuickPow.Run,
-                            Convert.ToInt32(textBox_iterations.Text), Convert.ToInt32(xTextBox.Text));
-                        await DrawLines(time, i => i*Math.Log(i,2)/30000);
+                            Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text));
+                        await DrawLine(time, i => i*Math.Log(i,2)/30000);
                         break;
                     
-                    case 11:
-                        time = Program.MeasureMatrix(Program.MakeMatrices(Convert.ToInt32(textBox_n.Text)), 
+                    case 11://MatrixMultiplication
+                        time = Program.Measure(Program.MakeMatrices(Convert.ToInt32(textBox_n.Text)), 
                             Program.MakeMatrices(Convert.ToInt32(textBox_n.Text)), MatrixMultiplication.Run,
-                            Convert.ToInt32(textBox_iterations.Text), Convert.ToInt32(textBox_n.Text));
-                        await DrawLines(time, i => Math.Pow(i, 3) / 300000);
+                            Convert.ToInt32(textBox_iterations.Text), updateChart);
+                        await DrawLine(time, i => Math.Pow(i, 3) / 300000);
                         break;
                     
                     case 12: //TreeSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Treesort.Run,
-                            Convert.ToInt32(textBox_iterations.Text));
-                        await DrawLines(time, i => i*Math.Log(i,2)/30000);
+                            Convert.ToInt32(textBox_iterations.Text), updateChart);
+                        await DrawLine(time, i => i*Math.Log(i,2)/30000);
                         break;
                     
                     case 13: //CocktailSort
-                        time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Treesort.Run,
-                            Convert.ToInt32(textBox_iterations.Text));
-                        await DrawLines(time, i => Math.Pow(i,2)/2000000);
+                        time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), CocktailSort.Run,
+                            Convert.ToInt32(textBox_iterations.Text), updateChart);
+                        await DrawLine(time, i => Math.Pow(i,2)/2000000);
                         break;
                     
                     default:
@@ -218,6 +200,7 @@ namespace Lab1
             finally
             {
                 buildChartButton.Enabled = true;
+                cancelDrawing = false;
             }
             
         }
