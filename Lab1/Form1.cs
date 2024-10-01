@@ -206,7 +206,7 @@ namespace Lab1
                     case 13: //CocktailSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Treesort.Run,
                             Convert.ToInt32(textBox_iterations.Text));
-                        await DrawLines(time, i => Math.Pow(2,i)/30000);
+                        await DrawLines(time, i => Math.Pow(i,2)/2000000);
                         break;
                     
                     default:
@@ -225,6 +225,7 @@ namespace Lab1
         private void StopButton_Click(object sender, EventArgs e)
         {
             cancelDrawing = true;
+            buildChartButton.Enabled = true;
             MessageBox.Show("Построение графика завершено");
         }
 
