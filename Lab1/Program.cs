@@ -124,7 +124,7 @@ namespace Lab1
             return !choice ? time : FixArtefact(time);
         }
         
-        public static double[] Measure(int[][,] aMatrixArrays ,int[][,] bMatrixArrays, Action<int[,], int[,]> operation, int iterations, Action<int, double> updateChartCallback)
+        public static double[] MeasureMatrixes(int[][,] aMatrixArrays ,int[][,] bMatrixArrays, Action<int[,], int[,]> operation, int iterations, Action<int, double> updateChartCallback)
         {
             double[] time = new double[aMatrixArrays.Length];
             Stopwatch stopwatch = new Stopwatch();

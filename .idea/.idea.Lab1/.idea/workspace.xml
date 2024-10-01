@@ -7,10 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49682993-e164-4fd1-998b-62670c2851a6" name="Changes" comment="">
+    <list default="true" id="49682993-e164-4fd1-998b-62670c2851a6" name="Changes" comment="обновлена отрисовка графика">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Form1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab1/MatrixMultiplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/MatrixMultiplication.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,13 +28,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Lab1/ClassikQuickPow.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/C# projects/Algorithms-Lab1v2/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/C# projects/Algorithms-Lab1v2/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/C# projects/Algorithms-Lab1v2/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/C# projects/Algorithms-Lab1v2/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Lab1/MatrixMultiplication.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Lab1/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/C# projects/Algorithms-Lab1v2/Lab1/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Lab1/QuickPow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Lab1/RecPow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Lab1/TreeSort.cs" root0="FORCE_HIGHLIGHTING" />
@@ -115,7 +110,7 @@
       <workItem from="1727405172145" duration="6000" />
       <workItem from="1727778937355" duration="6259000" />
       <workItem from="1727785220554" duration="4745000" />
-      <workItem from="1727805804315" duration="7756000" />
+      <workItem from="1727805804315" duration="10333000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -181,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727789143208</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="обновлена отрисовка графика">
+      <option name="closed" value="true" />
+      <created>1727813663369</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1727813663369</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,7 +213,8 @@
     <MESSAGE value="Добавлен алгоритм TreeSort" />
     <MESSAGE value="добавлена отрисовка графика в реальном времени" />
     <MESSAGE value="кнопка построения графика отключается пока график строится, приоритетная платформа-64бит" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавлена отрисовка графика в реальном времени" />
+    <MESSAGE value="обновлена отрисовка графика" />
+    <option name="LAST_COMMIT_MESSAGE" value="обновлена отрисовка графика" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -115,31 +115,31 @@ namespace Lab1
                     case 1:
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg2.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart);
-                        await DrawLine(time, 1100000);
+                        await DrawLine(time, 2300000);
                         break;
                     
                     case 2:
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg3.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart);
-                        await DrawLine(time, 610000);
+                        await DrawLine(time, 700000);
                         break;
                     
                     case 3:
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg4.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart);
-                        await DrawLine(time, 200000);
+                        await DrawLine(time, 3500000);
                         break;
                     
                     case 4://BubbleSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg5.BubbleSort,
                             Convert.ToInt32(textBox_iterations.Text), updateChart);
-                        await DrawLine(time, i => Math.Pow(i, 2) / 1600000);
+                        await DrawLine(time, i => Math.Pow(i, 2) / 3400000);
                         break;
                     
                     case 5: //QuickSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg6.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart);
-                        await DrawLine(time, i => i*Math.Log(i,2)/140000);
+                        await DrawLine(time, i => i*Math.Log(i,2)/40000);
                         break;
                     
                     case 6://TimSort
@@ -157,26 +157,26 @@ namespace Lab1
                     case 8://RecPow
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), RecPow.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text));
-                        await DrawLine(time, i => i*Math.Log(i,2)/10000);
+                        await DrawLine(time, i => i*Math.Log(i,2)/18000);
                         break;
                     
                     case 9://QuickPow
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), QuickPow.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text));
-                        await DrawLine(time, i => i*Math.Log(i,2)/30000);
+                        await DrawLine(time, i => i*Math.Log(i,2)/60000);
                         break;
                     
                     case 10://ClassikQuickPow
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), ClassikQuickPow.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text));
-                        await DrawLine(time, i => i*Math.Log(i,2)/30000);
+                        await DrawLine(time, i => i*Math.Log(i,2)/50000);
                         break;
                     
                     case 11://MatrixMultiplication
-                        time = Program.Measure(Program.MakeMatrices(Convert.ToInt32(textBox_n.Text)), 
+                        time = Program.MeasureMatrixes(Program.MakeMatrices(Convert.ToInt32(textBox_n.Text)), 
                             Program.MakeMatrices(Convert.ToInt32(textBox_n.Text)), MatrixMultiplication.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart);
-                        await DrawLine(time, i => Math.Pow(i, 3) / 300000);
+                        await DrawLine(time, i => Math.Pow(i, 3) / 550000);
                         break;
                     
                     case 12: //TreeSort
@@ -188,7 +188,7 @@ namespace Lab1
                     case 13: //CocktailSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), CocktailSort.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart);
-                        await DrawLine(time, i => Math.Pow(i,2)/2000000);
+                        await DrawLine(time, i => Math.Pow(i,2)/9000000);
                         break;
                     
                     default:
