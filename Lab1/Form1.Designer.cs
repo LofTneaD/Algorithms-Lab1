@@ -47,6 +47,7 @@
             this.buildChartButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Timers.Timer();
             this.label4 = new System.Windows.Forms.Label();
+            this.stopButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -221,12 +222,22 @@
             this.label4.Text = "Выберите алгоритм";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // stopButton
+            // 
+            this.stopButton.Location = new System.Drawing.Point(857, 669);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(301, 43);
+            this.stopButton.TabIndex = 7;
+            this.stopButton.Text = "Завершить построение графика";
+            this.stopButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1158, 724);
+            this.Controls.Add(this.stopButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.algorithmComboBox);
             this.Controls.Add(this.buildChartButton);
@@ -247,6 +258,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.timer1)).EndInit();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button stopButton;
 
         private System.Windows.Forms.Label label4;
 

@@ -27,6 +27,10 @@ namespace Lab1
             buildChartButton.Click += BuildChartButton_Click;
             this.Controls.Add(buildChartButton);
             
+            stopButton.Text = "Остановить";
+            stopButton.Click += StopButton_Click;
+            this.Controls.Add(stopButton);
+            
             textBox_n.Text = "Введите значение n";
             textBox_n.ForeColor = Color.Gray;
 
@@ -48,53 +52,60 @@ namespace Lab1
         }
 
         public static bool IsBuildingChart;
+        
+        private bool cancelDrawing = false;
 
         private async Task DrawLines(double[] time, Func<int, double> factor)
         {
-            // Отрисовка линий с использованием переданного вычисления для второй линии
+            cancelDrawing = false;
+
             for (int i = 0; i < time.Length; i++)
+            {
+                if (cancelDrawing) break;
+
+                Invoke((Action)(() =>
+                {
+                    this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
+                    this.chart1.Series[1].Points.AddXY(i + 1, factor(i));
+                }));
+
+                await Task.Delay(0);
+            }
+            
+            if (!cancelDrawing)
             {
                 Invoke((Action)(() =>
                 {
-                    this.chart1.Series[0].Points.AddXY(i + 1, time[i]); // Первая линия
-                    this.chart1.Series[1].Points.AddXY(i + 1, factor(i)); // Вторая линия с кастомным вычислением
+                    this.chart1.ChartAreas[0].RecalculateAxesScale();
+                }));
+            }
+        }
+
+        private async Task DrawLines(double[] time, double factor)
+        {
+            cancelDrawing = false;
+
+            for (int i = 0; i < time.Length; i++)
+            {
+                if (cancelDrawing) break;
+
+                Invoke((Action)(() =>
+                {
+                    this.chart1.Series[0].Points.AddXY(i + 1, time[i]);
+                    this.chart1.Series[1].Points.AddXY(i + 1, (double)i / factor);
                 }));
 
-                // Минимальная задержка для плавной отрисовки графика
                 await Task.Delay(0);
             }
 
-            // Обновление осей после завершения отрисовки
-            Invoke((Action)(() =>
+            if (!cancelDrawing)
             {
-                this.chart1.ChartAreas[0].RecalculateAxesScale();
-            }));
-        }
-        
-        private async Task DrawLines(double[] time, double factor)
-        {
-            // Первая линия - добавление точек
-            for (int i = 0; i < time.Length; i++)
-            {
-                // Используем Invoke для безопасного обновления элементов управления из основного потока
                 Invoke((Action)(() =>
                 {
-                    // Очищаем существующие данные для начала отрисовки новой линии
-                    this.chart1.Series[0].Points.AddXY(i + 1, time[i]); // Первая линия
-                    this.chart1.Series[1].Points.AddXY(i + 1, (double)i / factor); // Вторая линия
+                    this.chart1.ChartAreas[0].RecalculateAxesScale();
                 }));
-
-                // Задержка для асинхронного выполнения, если требуется
-                await Task.Delay(0); // Задержка минимальная, чтобы график не замораживался
             }
-
-            // Обновляем оси после завершения отрисовки всех точек
-            Invoke((Action)(() =>
-            {
-                this.chart1.ChartAreas[0].RecalculateAxesScale(); // Принудительное обновление масштабов осей
-            }));
         }
-
 
         private async void BuildChartButton_Click(object sender, EventArgs e)
         {
@@ -218,6 +229,13 @@ namespace Lab1
             }
             
         }
+
+        private void StopButton_Click(object sender, EventArgs e)
+        {
+            cancelDrawing = true;
+            MessageBox.Show("Построение графика завершено");
+        }
+
         
         private void AlgorithmComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
