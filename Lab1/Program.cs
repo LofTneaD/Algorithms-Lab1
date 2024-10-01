@@ -61,11 +61,7 @@ namespace Lab1
             int[][,] matrices = new int[n][,];
             for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < n; j++)
-                {
-                    matrices[i] = new int[i,j];
-                    matrices[i] = RandomMatrix(i);
-                }
+                matrices[i] = RandomMatrix(i);
             }            
             return matrices;
         }
