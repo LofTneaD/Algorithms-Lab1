@@ -50,10 +50,8 @@ namespace Lab1
             textBox_iterations.LostFocus += interationsAddText;
 
         }
-
-        public static bool IsBuildingChart;
         
-        private bool cancelDrawing = false;
+        private bool cancelDrawing;
 
         private async Task DrawLines(double[] time, Func<int, double> factor)
         {
@@ -109,20 +107,14 @@ namespace Lab1
 
         private async void BuildChartButton_Click(object sender, EventArgs e)
         {
-            if (IsBuildingChart)
-            {
-                MessageBox.Show("Построение графика уже выполняется, дождитесь завершения.");
-                return;
-            }
-
             int selectedIndex = algorithmComboBox.SelectedIndex;
             if (selectedIndex == -1)
             {
                 MessageBox.Show("Пожалуйста, выберите алгоритм.");
                 return;
             }
-
-            IsBuildingChart = true;
+            
+            buildChartButton.Enabled = false;
             Invoke((Action)ClearGraphic);
             
             try
@@ -225,7 +217,7 @@ namespace Lab1
             }
             finally
             {
-                IsBuildingChart = false;
+                buildChartButton.Enabled = true;
             }
             
         }

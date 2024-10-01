@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.CSharp.RuntimeBinder;
 
 namespace Lab1
 {
@@ -35,10 +36,10 @@ namespace Lab1
         public static int[][] MakeMassives(int n)
         {
             int[][] arrays = new int[n][];
-            for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
             {
-                arrays[i] = new int[i];
-                arrays[i] = RandomArray(i);
+                arrays[j] = new int[j];
+                arrays[j] = RandomArray(j);
             }            
             return arrays;
         }
