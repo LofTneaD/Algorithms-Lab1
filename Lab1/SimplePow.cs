@@ -13,7 +13,7 @@ namespace Lab1
         {
             for (int i = 0; i < array.Length; i++)
             {
-                int temp = 1;
+                long temp = 1;
                 for (int j = 0; j < array[i]; j++)
                 {
                     temp *= x;

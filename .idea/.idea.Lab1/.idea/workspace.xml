@@ -7,16 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49682993-e164-4fd1-998b-62670c2851a6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Lab1/ClassikQuickPow.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Lab1/QuickPow.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Lab1/RecPow.cs" afterDir="false" />
+    <list default="true" id="49682993-e164-4fd1-998b-62670c2851a6" name="Changes" comment="fixes">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab1/Form1.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Form1.Designer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Form1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab1/Lab1.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Lab1.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab1/SimplePow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/SimplePow.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,9 +24,17 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Lab1/ClassikQuickPow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Lab1/MatrixMultiplication.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Lab1/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Lab1/QuickPow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Lab1/RecPow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Lab1/TreeSort.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -58,7 +60,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;FSharp&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.CSharpInteractiveConfiguration&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -71,9 +73,9 @@
 }</component>
   <component name="RunManager">
     <configuration name="Lab1" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Lab1/bin/Debug/Lab1.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lab1/bin/Debug" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
@@ -83,7 +85,7 @@
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
       <option name="PROJECT_KIND" value="Console" />
-      <option name="PROJECT_TFM" value="" />
+      <option name="PROJECT_TFM" value=".NETFramework,Version=v4.7.2" />
       <method v="2">
         <option name="Build" />
       </method>
@@ -105,6 +107,11 @@
       <workItem from="1727132096823" duration="12000" />
       <workItem from="1727132344144" duration="66000" />
       <workItem from="1727132439800" duration="2561000" />
+      <workItem from="1727161487355" duration="36375000" />
+      <workItem from="1727405172145" duration="6000" />
+      <workItem from="1727778937355" duration="6259000" />
+      <workItem from="1727785220554" duration="4745000" />
+      <workItem from="1727805804315" duration="12087000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -122,17 +129,105 @@
       <option name="project" value="LOCAL" />
       <updated>1727051315066</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Повторно нажать на кнопку до окончания построения графика больше нельзя, прогрессбар удален">
+      <option name="closed" value="true" />
+      <created>1727163088885</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727163088885</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Повторно нажать на кнопку до того как построился график больше нельзя, удален прогрессбар">
+      <option name="closed" value="true" />
+      <created>1727163467349</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727163467349</updated>
+    </task>
+    <task id="LOCAL-00005" summary="добавленны перемножение матриц, чекр на процесс построения графика">
+      <option name="closed" value="true" />
+      <created>1727169402924</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1727169402924</updated>
+    </task>
+    <task id="LOCAL-00006" summary="добавлены все графики кроме SimplePow, xTextBox появляется только при выборе степенных алгоритмов, текст в текстбоксах пропадает при нажатии на них">
+      <option name="closed" value="true" />
+      <created>1727219104157</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1727219104157</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Добавлен алгоритм TreeSort">
+      <option name="closed" value="true" />
+      <created>1727238657001</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1727238657001</updated>
+    </task>
+    <task id="LOCAL-00008" summary="добавлена отрисовка графика в реальном времени">
+      <option name="closed" value="true" />
+      <created>1727789143208</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1727789143208</updated>
+    </task>
+    <task id="LOCAL-00009" summary="обновлена отрисовка графика">
+      <option name="closed" value="true" />
+      <created>1727813663369</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1727813663369</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fixes">
+      <option name="closed" value="true" />
+      <created>1727816401586</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1727816401586</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="1" />
     <MESSAGE value="Добавлены многопоточность, перегрузка метода Measure, поле ввода для X, плохой прогрессбар, незначительно изменен дизайн, возвращены предполагаемые графики" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены многопоточность, перегрузка метода Measure, поле ввода для X, плохой прогрессбар, незначительно изменен дизайн, возвращены предполагаемые графики" />
+    <MESSAGE value="Повторно нажать на кнопку до окончания построения графика больше нельзя, прогрессбар удален" />
+    <MESSAGE value="Повторно нажать на кнопку до того как построился график больше нельзя, удален прогрессбар" />
+    <MESSAGE value="добавленны перемножение матриц, чекр на процесс построения графика" />
+    <MESSAGE value="добавлены все графики кроме SimplePow, xTextBox появляется только при выборе степенных алгоритмов, текст в текстбоксах пропадает при нажатии на них" />
+    <MESSAGE value="Добавлен алгоритм TreeSort" />
+    <MESSAGE value="добавлена отрисовка графика в реальном времени" />
+    <MESSAGE value="кнопка построения графика отключается пока график строится, приоритетная платформа-64бит" />
+    <MESSAGE value="обновлена отрисовка графика" />
+    <MESSAGE value="fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
