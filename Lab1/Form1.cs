@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Lab1
 {
@@ -16,7 +18,7 @@ namespace Lab1
             {
                 "постоянная функция", "сумма элементов", "произведение элементов",
                 "полином", "Bubble sort", "Quick sort", "Timsort","SimplePow",
-                "RecPow","QuickPow","ClassikQuickPow", "Умножение матриц", "TreeSort", "CocktailSort"
+                "RecPow","QuickPow","ClassikQuickPow", "Умножение матриц", "TreeSort", "CocktailSort", "BitonicSort"
             });
             this.Controls.Add(algorithmComboBox);
             this.algorithmComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -28,7 +30,7 @@ namespace Lab1
             buildChartButton.Click += BuildChartButton_Click;
             this.Controls.Add(buildChartButton);
             
-            stopButton.Text = "Остановить";
+            stopButton.Text = "Завершить построение графика";
             stopButton.Click += StopButton_Click;
             this.Controls.Add(stopButton);
             
@@ -53,29 +55,61 @@ namespace Lab1
         }
         private async Task DrawLine(double[] time, Func<int, double> factor)
         {
+            const int batchSize = 10;  // Пакет из 10 точек
+            List<DataPoint> pointsBatch = new List<DataPoint>(batchSize);
+
             for (int i = 0; i < time.Length; i++)
             {
                 if (cancelDrawing) break;
 
-                Invoke((Action)(() =>
+                pointsBatch.Add(new DataPoint(i + 1, factor(i)));
+
+                // Добавляем на график только после накопления пакета точек
+                if (pointsBatch.Count == batchSize || i == time.Length - 1)
                 {
-                    this.chart1.Series[1].Points.AddXY(i + 1, factor(i));
-                }));
-                await Task.Delay(10);
+                    Invoke((Action)(() =>
+                    {
+                        foreach (var point in pointsBatch)
+                        {
+                            this.chart1.Series[1].Points.Add(point);
+                        }
+                        chart1.ChartAreas[0].RecalculateAxesScale();
+                    }));
+
+                    pointsBatch.Clear();  // Очищаем список для следующего пакета
+
+                    await Task.Delay(1);  // Меньшая задержка для более плавной анимации
+                }
             }
         }
         
         private async Task DrawLine(double[] time, double factor)
         {
+            const int batchSize = 10;  // Пакет из 10 точек
+            List<DataPoint> pointsBatch = new List<DataPoint>(batchSize);
+
             for (int i = 0; i < time.Length; i++)
             {
                 if (cancelDrawing) break;
 
-                Invoke((Action)(() =>
+                pointsBatch.Add(new DataPoint(i + 1, i/factor));
+
+                // Добавляем на график только после накопления пакета точек
+                if (pointsBatch.Count == batchSize || i == time.Length - 1)
                 {
-                    this.chart1.Series[1].Points.AddXY(i + 1,i/factor);
-                }));
-                await Task.Delay(10);
+                    Invoke((Action)(() =>
+                    {
+                        foreach (var point in pointsBatch)
+                        {
+                            this.chart1.Series[1].Points.Add(point);
+                        }
+                        chart1.ChartAreas[0].RecalculateAxesScale();
+                    }));
+
+                    pointsBatch.Clear();  // Очищаем список для следующего пакета
+
+                    await Task.Delay(1);  // Меньшая задержка для более плавной анимации
+                }
             }
         }
         
@@ -141,7 +175,7 @@ namespace Lab1
                     case 4://BubbleSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg5.BubbleSort,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
-                        await DrawLine(time, i => Math.Pow(i, 2) / 3400000);
+                        await DrawLine(time, i => Math.Pow(i, 2) / 3200000);
                         break;
                     
                     case 5: //QuickSort
@@ -197,6 +231,11 @@ namespace Lab1
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), CocktailSort.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
                         await DrawLine(time, i => Math.Pow(i,2)/9000000);
+                        break;
+                    case 14: //BitonicSort
+                        time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), BitonicSort.Run,
+                            Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
+                        await DrawLine(time, i => i*Math.Log(i,2)/120000);
                         break;
                     
                     default:
