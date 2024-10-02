@@ -8,95 +8,66 @@ namespace Lab1
 {
     internal class Alg7
     {
-        const int RUN = 32; // Минимальный размер руна
+
         public static void Run(int[] array)
         {
-            TimSort(array, array.Length);
+            BitonicMergeSort.BitonicSort(array, 0, array.Length, 1);
         }
 
-        static void TimSort(int[] array, int n)
+        public class BitonicMergeSort
         {
-            // Сортируем подмассивы размером RUN с помощью сортировки вставками
-            for (int i = 0; i < n; i += RUN)
+            static void Swap<T>(ref T leftHandSide, ref T rightHandSide)
             {
-                InsertionSort(array, i, Math.Min(i + RUN - 1, n - 1));
+                T temp;
+                temp = leftHandSide;
+                leftHandSide = rightHandSide;
+                rightHandSide = temp;
             }
-
-            // Объединяем отсортированные руны с помощью сортировки слиянием
-            for (int size = RUN; size < n; size = 2 * size)
+            public static void CompareAndSwap(int[] array, int i, int j, int direction)
             {
-                for (int left = 0; left < n; left += 2 * size)
-                {
-                    int mid = left + size - 1;
-                    int right = Math.Min((left + 2 * size - 1), (n - 1));
+                int k;
 
-                    if (mid < right)
-                        Merge(array, left, mid, right);
+                k = array[i] > array[j] ? 1 : 0;
+
+
+                if (direction == k)
+                {
+
+                    Swap(ref array[i], ref array[j]);
                 }
             }
-        }
-        // Сортировка вставками
-        static void InsertionSort(int[] array, int left, int right)
-        {
-            for (int i = left + 1; i <= right; i++)
+
+
+            public static void BitonicMerge(int[] array, int low, int count, int direction)
             {
-                int temp = array[i];
-                int j = i - 1;
-
-                while (j >= left && array[j] > temp)
+                if (count > 1)
                 {
-                    array[j + 1] = array[j];
-                    j--;
+                    int k = count / 2;
+                    for (int i = low; i < low + k; i++)
+                    {
+                        CompareAndSwap(array, i, i + k, direction);
+                    }
+                    BitonicMerge(array, low, k, direction);
+                    BitonicMerge(array, low + k, k, direction);
                 }
-                array[j + 1] = temp;
-            }
-        }
-
-        // Слияние двух подмассивов
-        static void Merge(int[] array, int left, int mid, int right)
-        {
-            // Создаем временные массивы для левой и правой половин
-            int len1 = mid - left + 1;
-            int len2 = right - mid;
-            int[] leftArray = new int[len1];
-            int[] rightArray = new int[len2];
-
-            for (int x = 0; x < len1; x++)
-                leftArray[x] = array[left + x];
-            for (int x = 0; x < len2; x++)
-                rightArray[x] = array[mid + 1 + x];
-
-            // Индексы для левой, правой половин и основного массива
-            int i = 0, j = 0, k = left;
-
-            while (i < len1 && j < len2)
-            {
-                if (leftArray[i] <= rightArray[j])
-                {
-                    array[k] = leftArray[i];
-                    i++;
-                }
-                else
-                {
-                    array[k] = rightArray[j];
-                    j++;
-                }
-                k++;
             }
 
-            // Копируем оставшиеся элементы
-            while (i < len1)
-            {
-                array[k] = leftArray[i];
-                i++;
-                k++;
-            }
 
-            while (j < len2)
+            public static void BitonicSort(int[] array, int low, int count, int direction)
             {
-                array[k] = rightArray[j];
-                j++;
-                k++;
+                if (count > 1)
+                {
+                    int k = count / 2;
+
+
+                    BitonicSort(array, low, k, 1);
+
+
+                    BitonicSort(array, low + k, k, 0);
+
+
+                    BitonicMerge(array, low, count, direction);
+                }
             }
         }
     }
