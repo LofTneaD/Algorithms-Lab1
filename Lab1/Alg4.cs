@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Lab1
 {
-
     internal class Alg4
     {
         public static void Run(int[] array)

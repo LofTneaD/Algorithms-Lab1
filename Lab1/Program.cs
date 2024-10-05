@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.CSharp.RuntimeBinder;
 
 namespace Lab1
 {
@@ -18,17 +20,9 @@ namespace Lab1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-
-            /*double[] time = ChoiceAlg();
-            
-            int[] number = new int[time.Length];
-            for (int i = 0; i < number.Length; i++)
-            {
-                number[i] = i+1;
-            }*/
         }
 
-        public static int[] Random(int size)
+        public static int[] RandomArray(int size)
         {
             int[] randomArray = new int[size];
 
@@ -40,41 +34,50 @@ namespace Lab1
 
             return randomArray;
         }
-
         public static int[][] MakeMassives(int n)
         {
             int[][] arrays = new int[n][];
-            for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
             {
-                arrays[i] = new int[i];
-                arrays[i] = Random(i);
+                arrays[j] = new int[j];
+                arrays[j] = RandomArray(j);
             }            
             return arrays;
         }
-
-        /*public static double[] ChoiceAlg()
+        public static int[,] RandomMatrix(int size)
         {
-            int size = 100;
-            int iterations = 5;
-            double[] time = null;
+            int[,] matrix = new int[size, size];
+            Random random = new Random();
 
-            Console.WriteLine("Выберите алгоритм");
-            switch (Console.ReadLine())
+            for (int i = 0; i < size; i++)
             {
-                case "1":
-                    time = Measure(Random(size), Alg1.Run, iterations);
-                    break;
+                for (int j = 0; j < size; j++)
+                {
+                    matrix[i, j] = random.Next();
+                }
             }
-            return time;
-        }*/
-
-        public static double[] Measure(int[][] arrays, Action<int[]> operation, int iterations)
+            return matrix;
+        }
+        public static int[][,] MakeMatrices(int n)
+        {
+            int[][,] matrices = new int[n][,];
+            for (int i = 0; i < n; i++)
+            {
+                matrices[i] = RandomMatrix(i);
+            }            
+            return matrices;
+        }
+        public static double[] Measure(int[][] arrays, Action<int[]> operation, int iterations, Action<int, double> updateChartCallback,CancellationToken token)
         {
             double[] time = new double[arrays.Length];
             Stopwatch stopwatch = new Stopwatch();
 
             for (int i = 0; i < arrays.Length; i++)
             {
+                if (token.IsCancellationRequested) 
+                {
+                    throw new OperationCanceledException(token);
+                }
                 double totalTime = 0;
 
                 for (int j = 0; j < iterations; j++)
@@ -87,12 +90,79 @@ namespace Lab1
 
                     totalTime += stopwatch.Elapsed.TotalMilliseconds;
                 }
+
                 time[i] = totalTime / iterations;
-            }         
-            if (!choice)
-                return time;
-            else
-                return FixArtefact(time);
+
+                updateChartCallback(i, time[i]);
+            }
+
+            return !choice ? time : FixArtefact(time);
+        }
+        
+        public static double[] Measure(int[][] arrays, Action<int[],int> operation, int iterations, Action<int, double> updateChartCallback, int x,CancellationToken token)
+        {
+            double[] time = new double[arrays.Length];
+            Stopwatch stopwatch = new Stopwatch();
+
+            for (int i = 0; i < arrays.Length; i++)
+            {
+                if (token.IsCancellationRequested)
+                {
+                    throw new OperationCanceledException(token); 
+                }
+                
+                double totalTime = 0;
+
+                for (int j = 0; j < iterations; j++)
+                {
+                    stopwatch.Restart();
+
+                    operation(arrays[i],x);
+
+                    stopwatch.Stop();
+
+                    totalTime += stopwatch.Elapsed.TotalMilliseconds;
+                }
+
+                time[i] = totalTime / iterations;
+                
+                updateChartCallback(i, time[i]);
+            }
+
+            return !choice ? time : FixArtefact(time);
+        }
+        
+        public static double[] MeasureMatrixes(int[][,] aMatrixArrays ,int[][,] bMatrixArrays, Action<int[,], int[,]> operation, int iterations, Action<int, double> updateChartCallback,CancellationToken token)
+        {
+            double[] time = new double[aMatrixArrays.Length];
+            Stopwatch stopwatch = new Stopwatch();
+
+            for (int i = 0; i < aMatrixArrays.Length; i++)
+            {
+                if (token.IsCancellationRequested)
+                {
+                    throw new OperationCanceledException(token);
+                }
+                
+                double totalTime = 0;
+
+                for (int j = 0; j < iterations; j++)
+                {
+                    stopwatch.Restart();
+
+                    operation(aMatrixArrays[i], bMatrixArrays[i]);
+
+                    stopwatch.Stop();
+
+                    totalTime += stopwatch.Elapsed.TotalMilliseconds;
+                }
+
+                time[i] = totalTime / iterations;
+                
+                updateChartCallback(i, time[i]);
+            }
+
+            return !choice ? time : FixArtefact(time);
         }
         public static double[] FixArtefact(double[] time)
         {            
