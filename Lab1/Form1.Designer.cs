@@ -44,10 +44,13 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+
             this.buildChartButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Timers.Timer();
             this.label4 = new System.Windows.Forms.Label();
             this.stopButton = new System.Windows.Forms.Button();
+
+
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -65,7 +68,11 @@
             legend1.Title = "Графики";
             legend1.TitleSeparator = System.Windows.Forms.DataVisualization.Charting.LegendSeparatorStyle.ThickLine;
             this.chart1.Legends.Add(legend1);
+
             this.chart1.Location = new System.Drawing.Point(6, 19);
+
+            this.chart1.Location = new System.Drawing.Point(6, 30);
+
             this.chart1.Name = "chart1";
             series1.BorderWidth = 3;
             series1.ChartArea = "ChartArea1";
@@ -83,7 +90,11 @@
             series2.Name = "Series2";
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
+
             this.chart1.Size = new System.Drawing.Size(821, 646);
+
+            this.chart1.Size = new System.Drawing.Size(821, 635);
+
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             this.chart1.Click += new System.EventHandler(this.chart1_Click);
@@ -91,6 +102,8 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.chart1);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox1.Location = new System.Drawing.Point(12, 41);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(833, 671);
@@ -177,6 +190,7 @@
             this.groupBox3.Text = "Отсеивание выбросов";
             // 
             // radioButton2
+
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(147, 46);
@@ -201,6 +215,7 @@
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // buildChartButton
+
             // 
             this.buildChartButton.Location = new System.Drawing.Point(851, 375);
             this.buildChartButton.Name = "buildChartButton";
@@ -230,6 +245,18 @@
             this.stopButton.TabIndex = 7;
             this.stopButton.Text = "Завершить построение графика";
             this.stopButton.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(6, 46);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(127, 29);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Включить";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // Form1
             // 

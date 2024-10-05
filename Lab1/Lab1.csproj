@@ -54,6 +54,7 @@
     <Compile Include="Alg5.cs" />
     <Compile Include="Alg6.cs" />
     <Compile Include="Alg7.cs" />
+
     <Compile Include="BitonicSort.cs" />
     <Compile Include="ClassikQuickPow.cs" />
     <Compile Include="CocktailSort.cs" />
@@ -62,6 +63,10 @@
     <Compile Include="QuickPow.cs" />
     <Compile Include="RecPow.cs" />
     <Compile Include="SimplePow.cs" />
+
+    <Compile Include="Alg8.cs" />
+    <Compile Include="CocktailSort.cs" />
+
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
