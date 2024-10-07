@@ -36,6 +36,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.algorithmComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.powTime_Button = new System.Windows.Forms.RadioButton();
+            this.powSteps_Button = new System.Windows.Forms.RadioButton();
             this.xTextBox = new System.Windows.Forms.TextBox();
             this.textBox_iterations = new System.Windows.Forms.TextBox();
             this.textBox_n = new System.Windows.Forms.TextBox();
@@ -112,6 +114,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.powTime_Button);
+            this.groupBox2.Controls.Add(this.powSteps_Button);
             this.groupBox2.Controls.Add(this.xTextBox);
             this.groupBox2.Controls.Add(this.textBox_iterations);
             this.groupBox2.Controls.Add(this.textBox_n);
@@ -120,17 +124,37 @@
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox2.Location = new System.Drawing.Point(851, 41);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(307, 201);
+            this.groupBox2.Size = new System.Drawing.Size(307, 222);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Параметры";
             // 
+            // powTime_Button
+            // 
+            this.powTime_Button.Location = new System.Drawing.Point(171, 166);
+            this.powTime_Button.Name = "powTime_Button";
+            this.powTime_Button.Size = new System.Drawing.Size(104, 35);
+            this.powTime_Button.TabIndex = 5;
+            this.powTime_Button.Text = "Время";
+            this.powTime_Button.UseVisualStyleBackColor = true;
+            // 
+            // powSteps_Button
+            // 
+            this.powSteps_Button.Checked = true;
+            this.powSteps_Button.Location = new System.Drawing.Point(30, 166);
+            this.powSteps_Button.Name = "powSteps_Button";
+            this.powSteps_Button.Size = new System.Drawing.Size(104, 35);
+            this.powSteps_Button.TabIndex = 4;
+            this.powSteps_Button.TabStop = true;
+            this.powSteps_Button.Text = "Шаги";
+            this.powSteps_Button.UseVisualStyleBackColor = true;
+            // 
             // xTextBox
             // 
-            this.xTextBox.Location = new System.Drawing.Point(30, 145);
+            this.xTextBox.Location = new System.Drawing.Point(30, 132);
             this.xTextBox.Name = "xTextBox";
             this.xTextBox.Size = new System.Drawing.Size(265, 28);
-            this.xTextBox.TabIndex = 0;
+            this.xTextBox.TabIndex = 6;
             this.xTextBox.Text = "X";
             this.xTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -145,7 +169,7 @@
             // 
             // textBox_n
             // 
-            this.textBox_n.Location = new System.Drawing.Point(30, 92);
+            this.textBox_n.Location = new System.Drawing.Point(30, 88);
             this.textBox_n.Name = "textBox_n";
             this.textBox_n.Size = new System.Drawing.Size(265, 28);
             this.textBox_n.TabIndex = 2;
@@ -171,7 +195,7 @@
             this.groupBox3.Controls.Add(this.radioButton1);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox3.Location = new System.Drawing.Point(851, 248);
+            this.groupBox3.Location = new System.Drawing.Point(851, 269);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(307, 100);
             this.groupBox3.TabIndex = 3;
@@ -181,11 +205,10 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(147, 46);
+            this.radioButton2.Location = new System.Drawing.Point(171, 46);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(128, 28);
             this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Выключить";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
@@ -193,7 +216,8 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 46);
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(30, 46);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(115, 28);
             this.radioButton1.TabIndex = 0;
@@ -292,12 +316,14 @@
             this.PerformLayout();
         }
 
+
         private System.Windows.Forms.TextBox textBox3;
 
         private System.Windows.Forms.TextBox textBox2;
 
         private System.Windows.Forms.TextBox textBox1;
-
+        private System.Windows.Forms.RadioButton powSteps_Button;
+        private System.Windows.Forms.RadioButton powTime_Button;
         private System.Windows.Forms.Button stopButton;
 
         private System.Windows.Forms.Label label4;
