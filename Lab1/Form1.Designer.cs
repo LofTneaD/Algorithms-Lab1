@@ -50,6 +50,9 @@
             this.timer1 = new System.Timers.Timer();
             this.label4 = new System.Windows.Forms.Label();
             this.stopButton = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -63,29 +66,29 @@
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            legend1.Name = "Legend1";
+            legend1.Name = "time";
             legend1.Title = "Графики";
             legend1.TitleSeparator = System.Windows.Forms.DataVisualization.Charting.LegendSeparatorStyle.ThickLine;
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(6, 19);
+            this.chart1.Location = new System.Drawing.Point(-42, 0);
             this.chart1.Name = "chart1";
             series1.BorderWidth = 3;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Color = System.Drawing.Color.Blue;
-            series1.Legend = "Legend1";
+            series1.Legend = "time";
             series1.LegendText = "Фактический";
             series1.Name = "Series1";
             series2.BorderWidth = 3;
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            series2.Legend = "Legend1";
+            series2.Legend = "time";
             series2.LegendText = "Предпологаемый";
             series2.Name = "Series2";
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(821, 646);
+            this.chart1.Size = new System.Drawing.Size(846, 634);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             this.chart1.Click += new System.EventHandler(this.chart1_Click);
@@ -93,12 +96,11 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.chart1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 41);
+            this.groupBox1.Location = new System.Drawing.Point(71, 41);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(833, 671);
+            this.groupBox1.Size = new System.Drawing.Size(774, 615);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "График";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // algorithmComboBox
@@ -248,12 +250,39 @@
             // 
             // stopButton
             // 
-            this.stopButton.Location = new System.Drawing.Point(857, 669);
+            this.stopButton.Location = new System.Drawing.Point(857, 597);
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(301, 43);
             this.stopButton.TabIndex = 7;
             this.stopButton.Text = "Завершить построение графика";
             this.stopButton.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.textBox1.Location = new System.Drawing.Point(12, 62);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(26, 20);
+            this.textBox1.TabIndex = 8;
+            this.textBox1.Text = "мс";
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.textBox2.Location = new System.Drawing.Point(691, 692);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(15, 20);
+            this.textBox2.TabIndex = 9;
+            this.textBox2.Text = "N";
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.textBox3.Location = new System.Drawing.Point(249, 692);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(208, 20);
+            this.textBox3.TabIndex = 10;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // Form1
             // 
@@ -261,6 +290,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1158, 724);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.algorithmComboBox);
@@ -281,11 +313,17 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timer1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
+
+        private System.Windows.Forms.TextBox textBox3;
+
+        private System.Windows.Forms.TextBox textBox2;
+
+        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.RadioButton powSteps_Button;
         private System.Windows.Forms.RadioButton powTime_Button;
-
         private System.Windows.Forms.Button stopButton;
 
         private System.Windows.Forms.Label label4;
