@@ -152,66 +152,75 @@ namespace Lab1
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg1.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
                         await DrawLine(time, 2700000);
+                        textBox3.Text = "Предпологаемый: f(n) = 1";
                         break;
                     
                     case 1:
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg2.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
                         await DrawLine(time, 2300000);
+                        textBox3.Text = "Предпологаемый: f(n) = n";
                         break;
                     
                     case 2:
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg3.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
                         await DrawLine(time, 700000);
+                        textBox3.Text = "Предпологаемый: f(n) = n";
                         break;
                     
                     case 3:
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg4.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
                         await DrawLine(time, 3500000);
+                        textBox3.Text = "Предпологаемый: f(n) = n";
                         break;
                     
                     case 4://BubbleSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg5.BubbleSort,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
                         await DrawLine(time, i => Math.Pow(i, 2) / 3200000);
+                        textBox3.Text = "Предпологаемый: f(n) = n^2";
                         break;
                     
                     case 5: //QuickSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg6.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
                         await DrawLine(time, i => i*Math.Log(i,2)/40000);
+                        textBox3.Text = "Предпологаемый: f(n) = n*Log(n)";
                         break;
                     
                     case 6://TimSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg7.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
                         await DrawLine(time, i => i*Math.Log(i,2)/450000);
-
+                        textBox3.Text = "Предпологаемый: f(n) = n*Log(n)";
                         break;
                     case 7://SimplePow
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), SimplePow.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
                         await DrawLine(time, i => i*1000);
-
+                        textBox3.Text = "Предпологаемый: f(n) = n";
                         break;
                     case 8://RecPow
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), RecPow.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
                         await DrawLine(time, i => i*Math.Log(i,2)/18000);
+                        textBox3.Text = "Предпологаемый: f(n) = n*Log(n)";
                         break;
                     
                     case 9://QuickPow
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), QuickPow.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
                         await DrawLine(time, i => i*Math.Log(i,2)/60000);
+                        textBox3.Text = "Предпологаемый: f(n) = n*Log(n)";
                         break;
                     
                     case 10://ClassikQuickPow
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), ClassikQuickPow.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
                         await DrawLine(time, i => i*Math.Log(i,2)/50000);
+                        textBox3.Text = "Предпологаемый: f(n) = n*Log(n)";
                         break;
                     
                     case 11://MatrixMultiplication
@@ -219,23 +228,27 @@ namespace Lab1
                             Program.MakeMatrices(Convert.ToInt32(textBox_n.Text)), MatrixMultiplication.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
                         await DrawLine(time, i => Math.Pow(i, 3) / 550000);
+                        textBox3.Text = "Предпологаемый: f(n) = n^3";
                         break;
                     
                     case 12: //TreeSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Treesort.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
                         await DrawLine(time, i => i*Math.Log(i,2)/30000);
+                        textBox3.Text = "Предпологаемый: f(n) = n*Log(n)";
                         break;
                     
                     case 13: //CocktailSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), CocktailSort.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
                         await DrawLine(time, i => Math.Pow(i,2)/9000000);
+                        textBox3.Text = "Предпологаемый: f(n) = n^2";
                         break;
                     case 14: //BitonicSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), BitonicSort.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
                         await DrawLine(time, i => i*Math.Log(i,2)/120000);
+                        textBox3.Text = "Предпологаемый: f(n) = n*Log(n)";
                         break;
                     
                     default:
@@ -375,6 +388,16 @@ namespace Lab1
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             Program.OnOffSwitch(false);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
