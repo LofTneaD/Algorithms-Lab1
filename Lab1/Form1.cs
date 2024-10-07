@@ -370,7 +370,7 @@ namespace Lab1
             {
                 cancellationTokenSource.Cancel();
             }
-            cancelDrawing = true;
+            cancelDrawing = false;
             buildChartButton.Enabled = true;
         }
 
