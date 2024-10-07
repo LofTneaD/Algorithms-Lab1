@@ -25,6 +25,8 @@ namespace Lab1
             
             algorithmComboBox.SelectedIndexChanged += AlgorithmComboBox_SelectedIndexChanged;
             xTextBox.Visible = false;
+            powTime_Button.Visible = false;
+            powSteps_Button.Visible = false;
             
             buildChartButton.Text = "Построить график";
             buildChartButton.Click += BuildChartButton_Click;
@@ -55,7 +57,7 @@ namespace Lab1
         }
         private async Task DrawLine(double[] time, Func<int, double> factor)
         {
-            const int batchSize = 10;  // Пакет из 10 точек
+            const int batchSize = 10;
             List<DataPoint> pointsBatch = new List<DataPoint>(batchSize);
 
             for (int i = 0; i < time.Length; i++)
@@ -63,8 +65,7 @@ namespace Lab1
                 if (cancelDrawing) break;
 
                 pointsBatch.Add(new DataPoint(i + 1, factor(i)));
-
-                // Добавляем на график только после накопления пакета точек
+                
                 if (pointsBatch.Count == batchSize || i == time.Length - 1)
                 {
                     Invoke((Action)(() =>
@@ -76,16 +77,16 @@ namespace Lab1
                         chart1.ChartAreas[0].RecalculateAxesScale();
                     }));
 
-                    pointsBatch.Clear();  // Очищаем список для следующего пакета
+                    pointsBatch.Clear();
 
-                    await Task.Delay(1);  // Меньшая задержка для более плавной анимации
+                    await Task.Delay(1); 
                 }
             }
         }
         
         private async Task DrawLine(double[] time, double factor)
         {
-            const int batchSize = 10;  // Пакет из 10 точек
+            const int batchSize = 10;
             List<DataPoint> pointsBatch = new List<DataPoint>(batchSize);
 
             for (int i = 0; i < time.Length; i++)
@@ -93,8 +94,7 @@ namespace Lab1
                 if (cancelDrawing) break;
 
                 pointsBatch.Add(new DataPoint(i + 1, i/factor));
-
-                // Добавляем на график только после накопления пакета точек
+                
                 if (pointsBatch.Count == batchSize || i == time.Length - 1)
                 {
                     Invoke((Action)(() =>
@@ -106,9 +106,67 @@ namespace Lab1
                         chart1.ChartAreas[0].RecalculateAxesScale();
                     }));
 
-                    pointsBatch.Clear();  // Очищаем список для следующего пакета
+                    pointsBatch.Clear();
 
-                    await Task.Delay(1);  // Меньшая задержка для более плавной анимации
+                    await Task.Delay(1);
+                }
+            }
+        }
+        
+        private async Task DrawLine(int[] steps, Func<int, double> factor)
+        {
+            const int batchSize = 10;
+            List<DataPoint> pointsBatch = new List<DataPoint>(batchSize);
+
+            for (int i = 0; i < steps.Length; i++)
+            {
+                if (cancelDrawing) break;
+
+                pointsBatch.Add(new DataPoint(i + 1, factor(i)));
+                
+                if (pointsBatch.Count == batchSize || i == steps.Length - 1)
+                {
+                    Invoke((Action)(() =>
+                    {
+                        foreach (var point in pointsBatch)
+                        {
+                            this.chart1.Series[1].Points.Add(point);
+                        }
+                        chart1.ChartAreas[0].RecalculateAxesScale();
+                    }));
+
+                    pointsBatch.Clear();
+
+                    await Task.Delay(1); 
+                }
+            }
+        }
+        
+        private async Task DrawLine(int[] steps, double factor)
+        {
+            const int batchSize = 10;
+            List<DataPoint> pointsBatch = new List<DataPoint>(batchSize);
+
+            for (int i = 0; i < steps.Length; i++)
+            {
+                if (cancelDrawing) break;
+
+                pointsBatch.Add(new DataPoint(i + 1, i/factor));
+                
+                if (pointsBatch.Count == batchSize || i == steps.Length - 1)
+                {
+                    Invoke((Action)(() =>
+                    {
+                        foreach (var point in pointsBatch)
+                        {
+                            this.chart1.Series[1].Points.Add(point);
+                        }
+                        chart1.ChartAreas[0].RecalculateAxesScale();
+                    }));
+
+                    pointsBatch.Clear();
+
+                    await Task.Delay(1);
                 }
             }
         }
@@ -134,9 +192,22 @@ namespace Lab1
                 await Task.Run(async () =>
             {
                 double[] time;
+                int[] steps;
                 Action<int, double> updateChart = (index, elapsedTime) =>
                 {
                     if (cancelDrawing) return;
+                    Invoke((Action)(() =>
+                    {
+                        
+                        this.chart1.Series[0].Points.AddXY(index + 1, elapsedTime);
+                        this.chart1.ChartAreas[0].RecalculateAxesScale();
+                    }));
+                    
+                };
+                Action<int, int> updateStepsChart = (index, elapsedTime) =>
+                {
+                    if (cancelDrawing) return;
+
                     Invoke((Action)(() =>
                     {
                         
@@ -191,27 +262,63 @@ namespace Lab1
 
                         break;
                     case 7://SimplePow
-                        time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), SimplePow.Run,
-                            Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
-                        await DrawLine(time, i => i*1000);
-
+                        if (powTime_Button.Checked == false)
+                        {
+                            steps = Program.MeasureSteps(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), SimplePow.Run,
+                                Convert.ToInt32(textBox_iterations.Text), updateStepsChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
+                            await DrawLine(steps, i => i*1000);//SimplePow.Run=>SimplePowSteps.Run
+                        }
+                        else
+                        {
+                            time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), SimplePow.Run,
+                                Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
+                            await DrawLine(time, i => i*1000);
+                        }
                         break;
+                    
                     case 8://RecPow
-                        time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), RecPow.Run,
-                            Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
-                        await DrawLine(time, i => i*Math.Log(i,2)/18000);
+                        if (powTime_Button.Checked == false)
+                        {
+                            steps = Program.MeasureSteps(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), RecPow.Run,
+                                Convert.ToInt32(textBox_iterations.Text), updateStepsChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
+                            await DrawLine(steps, i => i*Math.Log(i,2)/18000);//RecPow.Run=>RecPowSteps.Run
+                        }
+                        else
+                        {
+                            time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), RecPow.Run,
+                                Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
+                            await DrawLine(time, i => i*Math.Log(i,2)/18000);
+                        }
                         break;
                     
                     case 9://QuickPow
-                        time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), QuickPow.Run,
-                            Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
-                        await DrawLine(time, i => i*Math.Log(i,2)/60000);
+                        if (powTime_Button.Checked == false)
+                        {
+                            steps = Program.MeasureSteps(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), QuickPow.Run,
+                                Convert.ToInt32(textBox_iterations.Text), updateStepsChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
+                            await DrawLine(steps, i => i*Math.Log(i,2)/60000);//QuickPow.Run=>QuickPowSteps.Run
+                        }
+                        else
+                        {
+                            time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), QuickPow.Run,
+                                Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
+                            await DrawLine(time, i => i*Math.Log(i,2)/60000);
+                        }
                         break;
                     
                     case 10://ClassikQuickPow
-                        time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), ClassikQuickPow.Run,
-                            Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
-                        await DrawLine(time, i => i*Math.Log(i,2)/50000);
+                        if (powTime_Button.Checked == false)
+                        {
+                            steps = Program.MeasureSteps(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), ClassikQuickPow.Run,
+                                Convert.ToInt32(textBox_iterations.Text), updateStepsChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
+                            await DrawLine(steps, i => i*Math.Log(i,2)/50000);//ClassikQuickPow.Run=>ClassikQuickPowSteps.Run
+                        }
+                        else
+                        {
+                            time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), ClassikQuickPow.Run,
+                                Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
+                            await DrawLine(time, i => i*Math.Log(i,2)/50000);
+                        }
                         break;
                     
                     case 11://MatrixMultiplication
@@ -263,7 +370,7 @@ namespace Lab1
             {
                 cancellationTokenSource.Cancel();
             }
-            cancelDrawing = true;
+            cancelDrawing = false;
             buildChartButton.Enabled = true;
         }
 
@@ -277,10 +384,14 @@ namespace Lab1
                 algorithmComboBox.SelectedItem.ToString() == "ClassikQuickPow")
             {
                 xTextBox.Visible = true;
+                powSteps_Button.Visible = true;
+                powTime_Button.Visible = true;
             }
             else
             {
                 xTextBox.Visible = false;
+                powSteps_Button.Visible = false;
+                powTime_Button.Visible = false;
             }
         }
         
