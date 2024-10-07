@@ -210,5 +210,20 @@ namespace Lab1
             else 
                 choice = false;
         }
+
+        public static void PowLauncher(int n, int x) //дописать
+        {
+            int[] steps = new int[n];
+            int[][] array = new int[n][];
+            for (int i = 0; i < n; i++)
+            {
+                array[i] = new int[i];
+                for (int j = 0; j < i; j++)
+                {
+                    array[i][j] = j + 1;
+                }
+                //steps[i] = (operation);
+            }
+        }
     }
 }
