@@ -4,12 +4,13 @@ namespace Lab1
     {
         public static void Run(int[] array, int x)
         {
+            int stepCounter = 0;
             foreach (long number in array)
             {
-                long result = Pow(x, number);
+                long result = StepsPow(x, number, ref stepCounter);
             }
         }
-        public static long Pow(long x, long n)
+        public static long Pow(long x, long n) //обычные замеры
         {
             if (n == 0)
                 return 1;
@@ -22,6 +23,26 @@ namespace Lab1
             else
             {
                 return x * Pow(x, n - 1);
+            }
+        }
+
+        public static long StepsPow(long x, long n, ref int stepCounter) //пошаговые
+        {
+            stepCounter++;
+            if (n == 0)
+                return 1;
+
+            if (n % 2 == 0)
+            {
+                stepCounter++;
+                long halfPow = StepsPow(x, n / 2, ref stepCounter);
+                stepCounter++;
+                return halfPow * halfPow;
+            }
+            else
+            {
+                stepCounter++;
+                return x * StepsPow(x, n - 1, ref stepCounter);
             }
         }
     }
