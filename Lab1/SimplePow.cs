@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -9,31 +10,51 @@ namespace Lab1
 {
     internal class SimplePow
     {
-        public static void Run(int[] array, int x) //обычные
+        public static void Run(int[] array, int x)
         {
-            for (int i = 0; i < array.Length; i++)
+            foreach (int number in array)
             {
-                long temp = 1;
-                for (int j = 0; j < array[i]; j++)
-                {
-                    temp *= x;
-                }
+                long result = Pow(x, number);
             }
         }
-        public static int[] StepsRun(int[] array, int x) //пошаговые
+        public static int[] RunSteps(int n, int x, Action<int, int> updateChartCallback, CancellationToken token) //пошаговые
         {
-            int[] steps = new int[array.Length];
-
-            for (int i = 0; i < array.Length; i++)
+            var totalSteps = new int[n];
+            for (int i = 0; i < totalSteps.Length; i++)
             {
-                long temp = 1;
-                for (int j = 0; j < array[i]; j++)
+                if (token.IsCancellationRequested)
                 {
-                    temp *= x;
-                    steps[i] += 1;
+                    throw new OperationCanceledException(token); 
                 }
+                var currentSteps = PowSteps(x, i);
+                updateChartCallback(i, currentSteps);
+                totalSteps[i] = currentSteps;
             }
-            return steps;
+            return totalSteps;
+        }
+
+        public static long Pow(int x, int n)
+        {
+            long result = 1;
+            
+            for (int i = 0; i < n; i++)
+            {
+                result *= x;
+            }
+
+            return result;
+        }
+        
+        public static int PowSteps(int x, int n)
+        {
+            int result = 1;
+            
+            for (int i = 0; i < n; i++)
+            {
+                result +=1;
+            }
+
+            return result;
         }
     }
 }

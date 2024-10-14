@@ -131,34 +131,6 @@ namespace Lab1
 
             return !choice ? time : FixArtefact(time);
         }
-        
-        public static int[] MeasureSteps(int[][] arrays, Action<int[],int> operation, int iterations, Action<int, int> updateChartCallback, int x,CancellationToken token)
-        {
-            int[] steps = new int[arrays.Length];
-
-            for (int i = 0; i < arrays.Length; i++)
-            {
-                if (token.IsCancellationRequested)
-                {
-                    throw new OperationCanceledException(token); 
-                }
-                
-                int totalSteps = 0;
-
-                for (int j = 0; j < iterations; j++)
-                {
-                    operation(arrays[i],x);
-                    totalSteps += 1;
-                }
-
-                steps[i] = totalSteps / iterations;
-                
-                updateChartCallback(i, steps[i]);
-            }
-
-            return steps;
-        }
-        
         public static double[] MeasureMatrixes(int[][,] aMatrixArrays ,int[][,] bMatrixArrays, Action<int[,], int[,]> operation, int iterations, Action<int, double> updateChartCallback,CancellationToken token)
         {
             double[] time = new double[aMatrixArrays.Length];

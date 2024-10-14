@@ -113,64 +113,6 @@ namespace Lab1
             }
         }
         
-        private async Task DrawLine(int[] steps, Func<int, double> factor)
-        {
-            const int batchSize = 10;
-            List<DataPoint> pointsBatch = new List<DataPoint>(batchSize);
-
-            for (int i = 0; i < steps.Length; i++)
-            {
-                if (cancelDrawing) break;
-
-                pointsBatch.Add(new DataPoint(i + 1, factor(i)));
-                
-                if (pointsBatch.Count == batchSize || i == steps.Length - 1)
-                {
-                    Invoke((Action)(() =>
-                    {
-                        foreach (var point in pointsBatch)
-                        {
-                            this.chart1.Series[1].Points.Add(point);
-                        }
-                        chart1.ChartAreas[0].RecalculateAxesScale();
-                    }));
-
-                    pointsBatch.Clear();
-
-                    await Task.Delay(1); 
-                }
-            }
-        }
-        
-        private async Task DrawLine(int[] steps, double factor)
-        {
-            const int batchSize = 10;
-            List<DataPoint> pointsBatch = new List<DataPoint>(batchSize);
-
-            for (int i = 0; i < steps.Length; i++)
-            {
-                if (cancelDrawing) break;
-
-                pointsBatch.Add(new DataPoint(i + 1, i/factor));
-                
-                if (pointsBatch.Count == batchSize || i == steps.Length - 1)
-                {
-                    Invoke((Action)(() =>
-                    {
-                        foreach (var point in pointsBatch)
-                        {
-                            this.chart1.Series[1].Points.Add(point);
-                        }
-                        chart1.ChartAreas[0].RecalculateAxesScale();
-                    }));
-
-                    pointsBatch.Clear();
-
-                    await Task.Delay(1);
-                }
-            }
-        }
-        
         private bool cancelDrawing;
         private CancellationTokenSource cancellationTokenSource;
         private async void BuildChartButton_Click(object sender, EventArgs e)
@@ -264,9 +206,8 @@ namespace Lab1
                     case 7://SimplePow
                         if (powTime_Button.Checked == false)
                         {
-                            steps = Program.MeasureSteps(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), SimplePow.Run,
-                                Convert.ToInt32(textBox_iterations.Text), updateStepsChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
-                            await DrawLine(steps, i => i*1000);//SimplePow.Run=>SimplePowSteps.Run
+                            steps = SimplePow.RunSteps(Convert.ToInt32(textBox_n.Text), Convert.ToInt32(xTextBox.Text),
+                                updateStepsChart, cancellationToken);
                         }
                         else
                         {
@@ -279,9 +220,8 @@ namespace Lab1
                     case 8://RecPow
                         if (powTime_Button.Checked == false)
                         {
-                            steps = Program.MeasureSteps(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), RecPow.Run,
-                                Convert.ToInt32(textBox_iterations.Text), updateStepsChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
-                            await DrawLine(steps, i => i*Math.Log(i,2)/18000);//RecPow.Run=>RecPowSteps.Run
+                            steps = RecPow.RunSteps(Convert.ToInt32(textBox_n.Text), Convert.ToInt32(xTextBox.Text),
+                                updateStepsChart, cancellationToken);
                         }
                         else
                         {
@@ -294,9 +234,8 @@ namespace Lab1
                     case 9://QuickPow
                         if (powTime_Button.Checked == false)
                         {
-                            steps = Program.MeasureSteps(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), QuickPow.Run,
-                                Convert.ToInt32(textBox_iterations.Text), updateStepsChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
-                            await DrawLine(steps, i => i*Math.Log(i,2)/60000);//QuickPow.Run=>QuickPowSteps.Run
+                            steps = QuickPow.RunSteps(Convert.ToInt32(textBox_n.Text), Convert.ToInt32(xTextBox.Text),
+                                updateStepsChart, cancellationToken);
                         }
                         else
                         {
@@ -309,9 +248,8 @@ namespace Lab1
                     case 10://ClassikQuickPow
                         if (powTime_Button.Checked == false)
                         {
-                            steps = Program.MeasureSteps(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), ClassikQuickPow.Run,
-                                Convert.ToInt32(textBox_iterations.Text), updateStepsChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
-                            await DrawLine(steps, i => i*Math.Log(i,2)/50000);//ClassikQuickPow.Run=>ClassikQuickPowSteps.Run
+                            steps = ClassikQuickPow.RunSteps(Convert.ToInt32(textBox_n.Text), Convert.ToInt32(xTextBox.Text),
+                                updateStepsChart, cancellationToken);
                         }
                         else
                         {
@@ -386,12 +324,14 @@ namespace Lab1
                 xTextBox.Visible = true;
                 powSteps_Button.Visible = true;
                 powTime_Button.Visible = true;
+                textBox_iterations.Visible = false;
             }
             else
             {
                 xTextBox.Visible = false;
                 powSteps_Button.Visible = false;
                 powTime_Button.Visible = false;
+                textBox_iterations.Visible = true;
             }
         }
         
@@ -487,5 +427,6 @@ namespace Lab1
         {
             Program.OnOffSwitch(false);
         }
+        
     }
 }

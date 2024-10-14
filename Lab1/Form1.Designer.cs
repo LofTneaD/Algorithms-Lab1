@@ -149,29 +149,26 @@
             // 
             // xTextBox
             // 
-            this.xTextBox.Location = new System.Drawing.Point(30, 132);
+            this.xTextBox.Location = new System.Drawing.Point(30, 109);
             this.xTextBox.Name = "xTextBox";
             this.xTextBox.Size = new System.Drawing.Size(265, 28);
             this.xTextBox.TabIndex = 6;
-            this.xTextBox.Text = "X";
             this.xTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox_iterations
             // 
-            this.textBox_iterations.Location = new System.Drawing.Point(30, 41);
+            this.textBox_iterations.Location = new System.Drawing.Point(30, 109);
             this.textBox_iterations.Name = "textBox_iterations";
             this.textBox_iterations.Size = new System.Drawing.Size(265, 28);
             this.textBox_iterations.TabIndex = 3;
-            this.textBox_iterations.Text = "Количество интераций";
             this.textBox_iterations.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox_n
             // 
-            this.textBox_n.Location = new System.Drawing.Point(30, 88);
+            this.textBox_n.Location = new System.Drawing.Point(30, 47);
             this.textBox_n.Name = "textBox_n";
             this.textBox_n.Size = new System.Drawing.Size(265, 28);
             this.textBox_n.TabIndex = 2;
-            this.textBox_n.Text = "Размерность n-Вектора";
             this.textBox_n.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_n.TextChanged += new System.EventHandler(this.textBox_n_TextChanged);
             // 
@@ -271,7 +268,6 @@
             this.Location = new System.Drawing.Point(15, 15);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Лабораторная работа #1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupBox1.ResumeLayout(false);
