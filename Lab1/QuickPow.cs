@@ -9,7 +9,7 @@ namespace Lab1
         {
             foreach (int number in array)
             {
-                long result = Pow(x, number);
+                Pow(x, number);
             }
         }
         public static int[] RunSteps(int n, int x, Action<int, int> updateChartCallback, CancellationToken token)
@@ -28,7 +28,7 @@ namespace Lab1
 
             return totalSteps;
         }
-        public static long Pow(int x, int n) //обычные
+        public static void Pow(int x, int n) //обычные
         {
             long result = 1;
             long baseValue = x;
@@ -41,7 +41,6 @@ namespace Lab1
                 baseValue *= baseValue;
                 if (n % 2 == 1) result *= baseValue;
             }
-            return result;
         }
 
         public static int PowSteps(int x, int n) //пошаговые

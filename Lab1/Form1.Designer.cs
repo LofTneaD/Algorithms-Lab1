@@ -37,9 +37,9 @@
             this.algorithmComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.powTime_Button = new System.Windows.Forms.RadioButton();
+            this.textBox_iterations = new System.Windows.Forms.TextBox();
             this.powSteps_Button = new System.Windows.Forms.RadioButton();
             this.xTextBox = new System.Windows.Forms.TextBox();
-            this.textBox_iterations = new System.Windows.Forms.TextBox();
             this.textBox_n = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -113,9 +113,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.powTime_Button);
+            this.groupBox2.Controls.Add(this.textBox_iterations);
             this.groupBox2.Controls.Add(this.powSteps_Button);
             this.groupBox2.Controls.Add(this.xTextBox);
-            this.groupBox2.Controls.Add(this.textBox_iterations);
             this.groupBox2.Controls.Add(this.textBox_n);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -136,6 +136,14 @@
             this.powTime_Button.Text = "Время";
             this.powTime_Button.UseVisualStyleBackColor = true;
             // 
+            // textBox_iterations
+            // 
+            this.textBox_iterations.Location = new System.Drawing.Point(30, 40);
+            this.textBox_iterations.Name = "textBox_iterations";
+            this.textBox_iterations.Size = new System.Drawing.Size(265, 28);
+            this.textBox_iterations.TabIndex = 3;
+            this.textBox_iterations.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // powSteps_Button
             // 
             this.powSteps_Button.Checked = true;
@@ -149,23 +157,15 @@
             // 
             // xTextBox
             // 
-            this.xTextBox.Location = new System.Drawing.Point(30, 109);
+            this.xTextBox.Location = new System.Drawing.Point(30, 132);
             this.xTextBox.Name = "xTextBox";
             this.xTextBox.Size = new System.Drawing.Size(265, 28);
             this.xTextBox.TabIndex = 6;
             this.xTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox_iterations
-            // 
-            this.textBox_iterations.Location = new System.Drawing.Point(30, 109);
-            this.textBox_iterations.Name = "textBox_iterations";
-            this.textBox_iterations.Size = new System.Drawing.Size(265, 28);
-            this.textBox_iterations.TabIndex = 3;
-            this.textBox_iterations.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // textBox_n
             // 
-            this.textBox_n.Location = new System.Drawing.Point(30, 47);
+            this.textBox_n.Location = new System.Drawing.Point(30, 88);
             this.textBox_n.Name = "textBox_n";
             this.textBox_n.Size = new System.Drawing.Size(265, 28);
             this.textBox_n.TabIndex = 2;

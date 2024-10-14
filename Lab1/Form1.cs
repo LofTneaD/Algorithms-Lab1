@@ -57,9 +57,6 @@ namespace Lab1
         }
         private async Task DrawLine(double[] time, Func<int, double> factor)
         {
-            const int batchSize = 10;
-            List<DataPoint> pointsBatch = new List<DataPoint>(batchSize);
-
             for (int i = 0; i < time.Length; i++)
             {
                 if (cancelDrawing) break;
@@ -83,44 +80,53 @@ namespace Lab1
                 }
             }
         }
-        
-        private async Task DrawLine(double[] time, double factor)
+        private async Task DrawLineWithAutoCoefficient(double[] time, Func<int, double> growthFunction)
         {
-            const int batchSize = 10;
-            List<DataPoint> pointsBatch = new List<DataPoint>(batchSize);
+            // Рассчитываем коэффициент на основе времени и функции роста
+            double coefficient = CalculateCoefficient(time, growthFunction);
+    
+            await DrawLine(time, i => growthFunction(i) / coefficient);
+        }
+        private double CalculateCoefficient(double[] time, Func<int, double> growthFunction)
+        {
+            int maxIndex = time.Length - 1;
+            double maxTime = time[maxIndex]; // Максимальное время выполнения
 
-            for (int i = 0; i < time.Length; i++)
-            {
-                if (cancelDrawing) break;
+            // Рассчитываем коэффициент на основе роста алгоритма и максимального времени
+            double coefficient = growthFunction(maxIndex) / maxTime;
 
-                pointsBatch.Add(new DataPoint(i + 1, i/factor));
-                
-                if (pointsBatch.Count == batchSize || i == time.Length - 1)
-                {
-                    Invoke((Action)(() =>
-                    {
-                        foreach (var point in pointsBatch)
-                        {
-                            this.chart1.Series[1].Points.Add(point);
-                        }
-                        chart1.ChartAreas[0].RecalculateAxesScale();
-                    }));
-
-                    pointsBatch.Clear();
-
-                    await Task.Delay(1);
-                }
-            }
+            return coefficient;
         }
         
         private bool cancelDrawing;
         private CancellationTokenSource cancellationTokenSource;
+        private List<DataPoint> pointsBatch = new List<DataPoint>();
+        private const int batchSize = 100; // Размер группы для отрисовки
+
         private async void BuildChartButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = algorithmComboBox.SelectedIndex;
             if (selectedIndex == -1)
             {
                 MessageBox.Show("Пожалуйста, выберите алгоритм.");
+                return;
+            }
+            
+            if (!IsValidNumber(textBox_n.Text))
+            {
+                MessageBox.Show("Пожалуйста, введите корректное положительное значение для n.");
+                return;
+            }
+    
+            if (!IsValidNumber(textBox_iterations.Text))
+            {
+                MessageBox.Show("Пожалуйста, введите корректное положительное значение для количества итераций.");
+                return;
+            }
+            
+            if (xTextBox.Visible && !IsValidNumber(xTextBox.Text))
+            {
+                MessageBox.Show("Пожалуйста, введите корректное положительное значение для x.");
                 return;
             }
             
@@ -135,72 +141,99 @@ namespace Lab1
             {
                 double[] time;
                 int[] steps;
-                Action<int, double> updateChart = (index, elapsedTime) =>
-                {
-                    if (cancelDrawing) return;
-                    Invoke((Action)(() =>
-                    {
-                        
-                        this.chart1.Series[0].Points.AddXY(index + 1, elapsedTime);
-                        this.chart1.ChartAreas[0].RecalculateAxesScale();
-                    }));
-                    
-                };
-                Action<int, int> updateStepsChart = (index, elapsedTime) =>
+                Action<int, double> updateChart = (index, currentTime) =>
                 {
                     if (cancelDrawing) return;
 
-                    Invoke((Action)(() =>
+                    // Добавляем точку в список группы
+                    pointsBatch.Add(new DataPoint(index + 1, currentTime));
+
+                    // Если накопилось batchSize точек или это последняя точка
+                    if (pointsBatch.Count >= batchSize || index == Convert.ToInt32(textBox_n.Text) - 1)
                     {
-                        
-                        this.chart1.Series[0].Points.AddXY(index + 1, elapsedTime);
-                        this.chart1.ChartAreas[0].RecalculateAxesScale();
-                    }));
-                    
+                        // Обновляем график в потоке интерфейса
+                        Invoke((Action)(() =>
+                        {
+                            foreach (var point in pointsBatch)
+                            {
+                                this.chart1.Series[0].Points.Add(point);
+                            }
+
+                            // Очистка списка для следующей группы точек
+                            pointsBatch.Clear();
+                            this.chart1.ChartAreas[0].RecalculateAxesScale();
+                        }));
+                    }
                 };
+
+                Action<int, int> updateStepsChart = (index, currentSteps) =>
+                {
+                    if (cancelDrawing) return;
+
+                    // Добавляем точку в список группы
+                    pointsBatch.Add(new DataPoint(index + 1, currentSteps));
+
+                    // Если накопилось batchSize точек или это последняя точка
+                    if (pointsBatch.Count >= batchSize || index == Convert.ToInt32(textBox_n.Text) - 1)
+                    {
+                        // Обновляем график в потоке интерфейса
+                        Invoke((Action)(() =>
+                        {
+                            foreach (var point in pointsBatch)
+                            {
+                                this.chart1.Series[0].Points.Add(point);
+                            }
+
+                            // Очистка списка для следующей группы точек
+                            pointsBatch.Clear();
+                            this.chart1.ChartAreas[0].RecalculateAxesScale();
+                        }));
+                    }
+                };
+
 
                 switch (selectedIndex)
                 {
                     case 0:
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg1.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
-                        await DrawLine(time, 2700000);
+                        await DrawLineWithAutoCoefficient(time, i => i); 
                         break;
                     
                     case 1:
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg2.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
-                        await DrawLine(time, 2300000);
+                        await DrawLineWithAutoCoefficient(time, i => i); 
                         break;
                     
                     case 2:
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg3.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
-                        await DrawLine(time, 700000);
+                        await DrawLineWithAutoCoefficient(time, i => i); 
                         break;
                     
                     case 3:
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg4.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
-                        await DrawLine(time, 3500000);
+                        await DrawLineWithAutoCoefficient(time, i => i); 
                         break;
                     
                     case 4://BubbleSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg5.BubbleSort,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
-                        await DrawLine(time, i => Math.Pow(i, 2) / 3200000);
+                        await DrawLineWithAutoCoefficient(time, i => Math.Pow(i, 2));
                         break;
                     
                     case 5: //QuickSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg6.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
-                        await DrawLine(time, i => i*Math.Log(i,2)/40000);
+                        await DrawLineWithAutoCoefficient(time, i =>i*Math.Log(i,2));
                         break;
                     
                     case 6://TimSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Alg7.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
-                        await DrawLine(time, i => i*Math.Log(i,2)/450000);
+                        await DrawLineWithAutoCoefficient(time, i =>i*Math.Log(i,2));
 
                         break;
                     case 7://SimplePow
@@ -213,7 +246,7 @@ namespace Lab1
                         {
                             time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), SimplePow.Run,
                                 Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
-                            await DrawLine(time, i => i*1000);
+                            await DrawLineWithAutoCoefficient(time, i => i);
                         }
                         break;
                     
@@ -227,7 +260,7 @@ namespace Lab1
                         {
                             time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), RecPow.Run,
                                 Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
-                            await DrawLine(time, i => i*Math.Log(i,2)/18000);
+                            await DrawLineWithAutoCoefficient(time, i => i*Math.Log(i,2));
                         }
                         break;
                     
@@ -241,7 +274,7 @@ namespace Lab1
                         {
                             time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), QuickPow.Run,
                                 Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
-                            await DrawLine(time, i => i*Math.Log(i,2)/60000);
+                            await DrawLineWithAutoCoefficient(time, i => i*Math.Log(i,2));
                         }
                         break;
                     
@@ -255,7 +288,7 @@ namespace Lab1
                         {
                             time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), ClassikQuickPow.Run,
                                 Convert.ToInt32(textBox_iterations.Text), updateChart,Convert.ToInt32(xTextBox.Text),cancellationToken);
-                            await DrawLine(time, i => i*Math.Log(i,2)/50000);
+                            await DrawLineWithAutoCoefficient(time, i => i*Math.Log(i,2));
                         }
                         break;
                     
@@ -263,24 +296,24 @@ namespace Lab1
                         time = Program.MeasureMatrixes(Program.MakeMatrices(Convert.ToInt32(textBox_n.Text)), 
                             Program.MakeMatrices(Convert.ToInt32(textBox_n.Text)), MatrixMultiplication.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
-                        await DrawLine(time, i => Math.Pow(i, 3) / 550000);
+                        await DrawLineWithAutoCoefficient(time, i =>Math.Pow(i, 3));
                         break;
                     
                     case 12: //TreeSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), Treesort.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
-                        await DrawLine(time, i => i*Math.Log(i,2)/30000);
+                        await DrawLineWithAutoCoefficient(time, i =>i*Math.Log(i,2));
                         break;
                     
                     case 13: //CocktailSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), CocktailSort.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
-                        await DrawLine(time, i => Math.Pow(i,2)/9000000);
+                        await DrawLineWithAutoCoefficient(time, i =>Math.Pow(i,2));
                         break;
                     case 14: //BitonicSort
                         time = Program.Measure(Program.MakeMassives(Convert.ToInt32(textBox_n.Text)), BitonicSort.Run,
                             Convert.ToInt32(textBox_iterations.Text), updateChart,cancellationToken);
-                        await DrawLine(time, i => i*Math.Log(i,2)/120000);
+                        await DrawLineWithAutoCoefficient(time, i =>i*Math.Log(i,2));
                         break;
                     
                     default:
@@ -301,7 +334,11 @@ namespace Lab1
             }
             
         }
-
+        
+        private bool IsValidNumber(string input)
+        {
+            return int.TryParse(input, out int value) && value > 0;
+        }
         private void StopButton_Click(object sender, EventArgs e)
         {
             if (cancellationTokenSource != null)
@@ -324,17 +361,14 @@ namespace Lab1
                 xTextBox.Visible = true;
                 powSteps_Button.Visible = true;
                 powTime_Button.Visible = true;
-                textBox_iterations.Visible = false;
             }
             else
             {
                 xTextBox.Visible = false;
                 powSteps_Button.Visible = false;
                 powTime_Button.Visible = false;
-                textBox_iterations.Visible = true;
             }
         }
-        
         private void RemoveText(object sender, EventArgs e)
         {
             TextBox textBox = sender as TextBox;
@@ -427,6 +461,5 @@ namespace Lab1
         {
             Program.OnOffSwitch(false);
         }
-        
     }
 }
