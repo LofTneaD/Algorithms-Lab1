@@ -9,9 +9,9 @@
   <component name="ChangeListManager">
     <list default="true" id="49682993-e164-4fd1-998b-62670c2851a6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Lab1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab1/Form1.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Form1.Designer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab1/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Form1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab1/QuickPow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/QuickPow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab1/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab1/RecPow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Lab1/RecPow.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,14 +28,21 @@
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/ClassikQuickPow.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Lab1/ClassikQuickPow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/Form1.Designer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/Form1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Lab1/MatrixMultiplication.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Lab1/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Lab1/QuickPow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/QuickPow.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/QuickPow.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Lab1/RecPow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/C# projects/Algorithms-Lab1/Lab1/RecPow.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Lab1/TreeSort.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">

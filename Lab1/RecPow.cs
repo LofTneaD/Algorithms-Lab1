@@ -16,16 +16,17 @@ namespace Lab1
         public static int[] RunSteps(int n, int x, Action<int, int> updateChartCallback, CancellationToken token)
         {
             var totalSteps = new int[n];
-            int stepCounter = 0;
             for (int i = 0; i < totalSteps.Length; i++)
             {
                 if (token.IsCancellationRequested)
                 {
-                    throw new OperationCanceledException(token); 
+                    throw new OperationCanceledException(token); // Обрабатываем отмену
                 }
-                var currentSteps = PowSteps(x, i, ref stepCounter);
-                updateChartCallback(i, currentSteps);
-                totalSteps[i] = currentSteps;
+
+                int stepCounter = 0;
+                var currentSteps = PowSteps(x, i, ref stepCounter); // Получаем количество шагов
+                updateChartCallback(i, currentSteps); // Обновляем график
+                totalSteps[i] = currentSteps; // Сохраняем количество шагов
             }
 
             return totalSteps;
@@ -48,22 +49,26 @@ namespace Lab1
         
         public static int PowSteps(int x, int n, ref int stepCounter)
         {
-            stepCounter++;
+            stepCounter++; // Считаем шаг за текущий вызов
+
             if (n == 0)
-                return 1;
+            {
+                return stepCounter; // Если степень 0, возвращаем текущий счетчик шагов
+            }
 
             if (n % 2 == 0)
             {
-                stepCounter++;
-                int halfPow = PowSteps(x, n / 2, ref stepCounter);
-                stepCounter++;
-                return halfPow * halfPow;
+                stepCounter++; // Шаг за деление на 2
+                PowSteps(x, n / 2, ref stepCounter); // Рекурсивный вызов для n / 2
+                stepCounter++; // Шаг за умножение результатов
             }
             else
             {
-                stepCounter++;
-                return x * PowSteps(x, n - 1, ref stepCounter);
+                stepCounter++; // Шаг за уменьшение степени на 1
+                PowSteps(x, n - 1, ref stepCounter); // Рекурсивный вызов для n - 1
             }
+
+            return stepCounter; // Возвращаем количество шагов
         }
     }
 }
