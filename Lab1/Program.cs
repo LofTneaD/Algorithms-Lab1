@@ -22,29 +22,37 @@ namespace Lab1
             Application.Run(new Form1());
         }
 
-        public static int[] RandomArray(int size)
+        public static int[] RandomArray(int size,CancellationToken token)
         {
             int[] randomArray = new int[size];
 
             Random random = new Random();
             for (int i = 0; i < size; i++)
             {
+                if (token.IsCancellationRequested) 
+                {
+                    throw new OperationCanceledException(token);
+                }
                 randomArray[i] = random.Next();
             }
 
             return randomArray;
         }
-        public static int[][] MakeMassives(int n)
+        public static int[][] MakeMassives(int n,CancellationToken token)
         {
             int[][] arrays = new int[n][];
             for (int j = 0; j < n; j++)
             {
+                if (token.IsCancellationRequested) 
+                {
+                    throw new OperationCanceledException(token);
+                }
                 arrays[j] = new int[j];
-                arrays[j] = RandomArray(j);
+                arrays[j] = RandomArray(j,token);
             }            
             return arrays;
         }
-        public static int[,] RandomMatrix(int size)
+        public static int[,] RandomMatrix(int size,CancellationToken token)
         {
             int[,] matrix = new int[size, size];
             Random random = new Random();
@@ -53,17 +61,25 @@ namespace Lab1
             {
                 for (int j = 0; j < size; j++)
                 {
+                    if (token.IsCancellationRequested) 
+                    {
+                        throw new OperationCanceledException(token);
+                    }
                     matrix[i, j] = random.Next();
                 }
             }
             return matrix;
         }
-        public static int[][,] MakeMatrices(int n)
+        public static int[][,] MakeMatrices(int n,CancellationToken token)
         {
             int[][,] matrices = new int[n][,];
             for (int i = 0; i < n; i++)
             {
-                matrices[i] = RandomMatrix(i);
+                if (token.IsCancellationRequested) 
+                {
+                    throw new OperationCanceledException(token);
+                }
+                matrices[i] = RandomMatrix(i,token);
             }            
             return matrices;
         }
@@ -131,7 +147,6 @@ namespace Lab1
 
             return !choice ? time : FixArtefact(time);
         }
-        
         public static double[] MeasureMatrixes(int[][,] aMatrixArrays ,int[][,] bMatrixArrays, Action<int[,], int[,]> operation, int iterations, Action<int, double> updateChartCallback,CancellationToken token)
         {
             double[] time = new double[aMatrixArrays.Length];
